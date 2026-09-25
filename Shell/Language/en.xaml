@@ -1,0 +1,324 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Sys="clr-namespace:System;assembly=mscorlib">
+
+    <Sys:String x:Key="系统设置">System Settings</Sys:String>
+    <Sys:String x:Key="生产模式">Production Mode</Sys:String>
+    <Sys:String x:Key="调试模式">Debug Mode</Sys:String>
+    <Sys:String x:Key="计划停机模式">Scheduled Downtime Mode</Sys:String>
+
+    <Sys:String x:Key="模块启用">Module Enable</Sys:String>
+    <Sys:String x:Key="启用ModbusTcp">Enable ModbusTcp</Sys:String>
+    <Sys:String x:Key="Modbus485通讯参数">Modbus485 Communication Parameters</Sys:String>
+    <Sys:String x:Key="串口号">Port Number</Sys:String>
+    <Sys:String x:Key="站号">Station Number</Sys:String>
+    <Sys:String x:Key="ModbusTcp通讯">ModbusTcp Communication</Sys:String>
+    <Sys:String x:Key="IP">IP</Sys:String>
+    <Sys:String x:Key="端口">Port</Sys:String>
+    <Sys:String x:Key="缓冲区大小">Buffer Size</Sys:String>
+    <Sys:String x:Key="超时">Timeout</Sys:String>
+    <Sys:String x:Key="读通讯地址">Read Communication Address</Sys:String>
+    <Sys:String x:Key="读PLC-起始地址">Read PLC - Start Address</Sys:String>
+    <Sys:String x:Key="读PLC-地址个数">Read PLC - Number of Addresses</Sys:String>
+    <Sys:String x:Key="读PLC-机台状态地址">Read PLC - Machine Status Address</Sys:String>
+    <Sys:String x:Key="读PLC-控制上位机状态地址">Read PLC - Control PC Status Address</Sys:String>
+    <Sys:String x:Key="读PLC-安全门报警地址">Read PLC - Safety Door Alarm Address</Sys:String>
+    <Sys:String x:Key="读PLC-报警地址">Read PLC - Alarm Address</Sys:String>
+    <Sys:String x:Key="读PLC-触发二次拍照标记">Read PLC - Trigger Secondary Photo Mark</Sys:String>
+    <Sys:String x:Key="读PLC-物料Ready触发加工标记">Read PLC - Material Ready Trigger Processing Mark</Sys:String>
+    <Sys:String x:Key="读PLC-触发扫码标记">Read PLC - Trigger Barcode Scan Mark</Sys:String>
+    <Sys:String x:Key="读PLC-触发拍照标记">Read PLC - Trigger Photo Mark</Sys:String>
+    <Sys:String x:Key="读PLC-触发测高标记">Read PLC - Trigger Height Measurement Mark</Sys:String>
+    <Sys:String x:Key="读PLC-当前处理穴位">Read PLC - Current Process Cavity</Sys:String>
+    <Sys:String x:Key="读PLC-包边后复检启用标记">Read PLC - Re-inspection Enable Mark After Edging</Sys:String>
+    <Sys:String x:Key="读PLC-空跑模式标记">Read PLC - Dry Run Mode Mark</Sys:String>
+    <Sys:String x:Key="读PLC-复拍标记">Read PLC - Re-photo Mark</Sys:String>
+    <Sys:String x:Key="写通讯地址">Write Communication Address</Sys:String>
+    <Sys:String x:Key="写PLC-起始地址">Write PLC - Start Address</Sys:String>
+    <Sys:String x:Key="写PLC-地址个数">Write PLC - Number of Addresses</Sys:String>
+    <Sys:String x:Key="写PLC-工位运行状态地址">Write PLC - Station Operation Status Address</Sys:String>
+    <Sys:String x:Key="写PLC-报警地址">Write PLC - Alarm Address</Sys:String>
+    <Sys:String x:Key="写PLC-是否需要处理">Write PLC - Needs Processing</Sys:String>
+    <Sys:String x:Key="写PLC-工作结果">Write PLC - Work Result</Sys:String>
+    <Sys:String x:Key="写PLC-扫码结果">Write PLC - Barcode Scan Result</Sys:String>
+    <Sys:String x:Key="写PLC-视觉结果">Write PLC - Vision Result</Sys:String>
+    <Sys:String x:Key="写PLC-测高结果">Write PLC - Height Measurement Result</Sys:String>
+    <Sys:String x:Key="写PLC-是否需要保压">Write PLC - Needs Pressure Hold</Sys:String>
+    <Sys:String x:Key="写PLC-视觉比对结果">Write PLC - Vision Comparison Result</Sys:String>
+    <Sys:String x:Key="写PLC-测高比对结果">Write PLC - Height Measurement Comparison Result</Sys:String>
+    <Sys:String x:Key="写PLC-让PLC复位">Write PLC - Reset PLC</Sys:String>
+    <Sys:String x:Key="写PLC-心跳信号">Write PLC - Heartbeat Signal</Sys:String>
+    <Sys:String x:Key="写PLC-载具盘物料信息">Write PLC - Carrier Tray Material Information</Sys:String>
+    <Sys:String x:Key="连接参数">Connection Parameters</Sys:String>
+    <Sys:String x:Key="写入超时">Write Timeout</Sys:String>
+    <Sys:String x:Key="读取超时">Read Timeout</Sys:String>
+    <Sys:String x:Key="扫码设定">Barcode Scan Settings</Sys:String>
+    <Sys:String x:Key="触发扫码指令">Trigger Barcode Scan Command</Sys:String>
+    <Sys:String x:Key="终止扫码指令">Terminate Barcode Scan Command</Sys:String>
+    <Sys:String x:Key="启用结束标识符">Enable End Identifier</Sys:String>
+    <Sys:String x:Key="未扫到码返回值">No Barcode Found Return Value</Sys:String>
+    <Sys:String x:Key="最小长度">Minimum Length</Sys:String>
+    <Sys:String x:Key="最大长度">Maximum Length</Sys:String>
+    <Sys:String x:Key="Tray">Tray</Sys:String>
+    <Sys:String x:Key="启用获取Tray信息">Enable Get Tray Information</Sys:String>
+    <Sys:String x:Key="TrayIP">Tray IP</Sys:String>
+    <Sys:String x:Key="通讯参数">Communication Parameters</Sys:String>
+    <Sys:String x:Key="视觉软件参数配置">Vision Software Parameter Configuration</Sys:String>
+    <Sys:String x:Key="德创视觉vps文件路径">DeChuang Vision VPS File Path</Sys:String>
+    <Sys:String x:Key="图片存储路径">Image Storage Path</Sys:String>
+    <Sys:String x:Key="FTP图片上传">FTP Image Upload</Sys:String>
+    <Sys:String x:Key="启用图片打包上传至服务器">Enable Image Packing and Upload to Server</Sys:String>
+    <Sys:String x:Key="服务器IP">Server IP</Sys:String>
+    <Sys:String x:Key="服务器端口">Server Port</Sys:String>
+    <Sys:String x:Key="登录用户名">Login Username</Sys:String>
+    <Sys:String x:Key="登陆密码">Login Password</Sys:String>
+    <Sys:String x:Key="线别">Line</Sys:String>
+    <Sys:String x:Key="工站">Station</Sys:String>
+    <Sys:String x:Key="Hive参数">Hive Parameters</Sys:String>
+    <Sys:String x:Key="IP地址">IP Address</Sys:String>
+    <Sys:String x:Key="端口号">Port Number</Sys:String>
+    <Sys:String x:Key="语言">Language</Sys:String>
+    <Sys:String x:Key="登录设定">Login Settings</Sys:String>
+    <Sys:String x:Key="允许使用用户名密码登录">Allow Username/Password Login</Sys:String>
+
+    <Sys:String x:Key="MES上传NG">MES Upload NG</Sys:String>
+    <Sys:String x:Key="Tape缺失">Tape Missing</Sys:String>
+    <Sys:String x:Key="小离型纸缺失">Small Release Paper Missing</Sys:String>
+    <Sys:String x:Key="大离型纸未撕">Large Release Paper Not Removed</Sys:String>
+    <Sys:String x:Key="贴装偏移">Mounting Offset</Sys:String>
+
+    <Sys:String x:Key="产品总数">Total Products</Sys:String>
+    <Sys:String x:Key="良率">Material Yield</Sys:String>
+    <Sys:String x:Key="扫码枪扫码总数">Barcode Scanner Total Scans</Sys:String>
+    <Sys:String x:Key="扫码枪良率">Barcode Scanner Yield</Sys:String>
+    <Sys:String x:Key="运行时间">Running Time</Sys:String>
+    <Sys:String x:Key="待料时间">Waiting Time</Sys:String>
+    <Sys:String x:Key="故障时间">Fault Time</Sys:String>
+    <Sys:String x:Key="报警总数">Total Alarms</Sys:String>
+
+    <Sys:String x:Key="加载视觉">Load Vision</Sys:String>
+    <Sys:String x:Key="关闭视觉">Close Vision</Sys:String>
+
+    <Sys:String x:Key="开始时间">Start Time：</Sys:String>
+    <Sys:String x:Key="结束时间">End Time：</Sys:String>
+    <Sys:String x:Key="查询">Query</Sys:String>
+    <Sys:String x:Key="导出">Export</Sys:String>
+    <Sys:String x:Key="当前报警">Current Alarm</Sys:String>
+    <Sys:String x:Key="序号">No.</Sys:String>
+    <Sys:String x:Key="级别">Level</Sys:String>
+    <Sys:String x:Key="模块">Module</Sys:String>
+    <Sys:String x:Key="信息">Information</Sys:String>
+    <Sys:String x:Key="历史报警">Historical Alarm</Sys:String>
+    <Sys:String x:Key="时间">Time</Sys:String>
+    <Sys:String x:Key="清空历史记录">Clear History</Sys:String>
+
+    <Sys:String x:Key="静态测试">Static Test</Sys:String>
+    <Sys:String x:Key="动态测试">Dynamic Test</Sys:String>
+    <Sys:String x:Key="停止测试">Stop Test</Sys:String>
+    <Sys:String x:Key="查看数据">View Data</Sys:String>
+
+    <Sys:String x:Key="视觉界面">Vision Interface</Sys:String>
+    <Sys:String x:Key="穴位信息">Cavity Information</Sys:String>
+    <Sys:String x:Key="运行步骤">Operation Steps</Sys:String>
+    <Sys:String x:Key="统计信息">Statistics</Sys:String>
+    <Sys:String x:Key="运行日志">Operation Log</Sys:String>
+    <Sys:String x:Key="报警信息">Alarm Information</Sys:String>
+
+    <Sys:String x:Key="生产信息">Production Information</Sys:String>
+    <Sys:String x:Key="模块信息">Module Information</Sys:String>
+    <Sys:String x:Key="扫码枪">Barcode Scanner</Sys:String>
+    <Sys:String x:Key="视觉">Vision</Sys:String>
+
+    <Sys:String x:Key="图表">Chart</Sys:String>
+    <Sys:String x:Key="一天产量">Daily Production</Sys:String>
+    <Sys:String x:Key="选择日期">Select Date</Sys:String>
+    <Sys:String x:Key="一段时间内产量">Production Over a Period</Sys:String>
+    <Sys:String x:Key="起始日期">Start Date</Sys:String>
+    <Sys:String x:Key="结束日期">End Date</Sys:String>
+
+    <Sys:String x:Key="数据">Data</Sys:String>
+    <Sys:String x:Key="当前产量">Current Production</Sys:String>
+    <Sys:String x:Key="重置">Reset</Sys:String>
+    <Sys:String x:Key="目标产量">Target Production</Sys:String>
+    <Sys:String x:Key="复检OK">Re-inspection OK</Sys:String>
+    <Sys:String x:Key="复检NG">Re-inspection NG</Sys:String>
+    <Sys:String x:Key="清零">Clear</Sys:String>
+
+    <Sys:String x:Key="点检">Inspection</Sys:String>
+    <Sys:String x:Key="点检日志">Inspection Log</Sys:String>
+    <Sys:String x:Key="点检项目">Inspection Item</Sys:String>
+    <Sys:String x:Key="扫码点检">Barcode Scan Inspection</Sys:String>
+    <Sys:String x:Key="PLC点检">PLC Inspection</Sys:String>
+    <Sys:String x:Key="相机点检">Camera Inspection</Sys:String>
+    <Sys:String x:Key="图片上传">Image Upload</Sys:String>
+
+    <Sys:String x:Key="制程">Process</Sys:String>
+    <Sys:String x:Key="新建制程">New Process</Sys:String>
+    <Sys:String x:Key="复制制程">Copy Process</Sys:String>
+    <Sys:String x:Key="加载制程">Load Process</Sys:String>
+    <Sys:String x:Key="删除制程">Delete Process</Sys:String>
+    <Sys:String x:Key="保存制程">Save Process</Sys:String>
+    <Sys:String x:Key="制程名称">Process Name</Sys:String>
+    <Sys:String x:Key="打开示教">Open Teaching</Sys:String>
+    <Sys:String x:Key="拍照位置">Photo Position</Sys:String>
+
+    <Sys:String x:Key="穴位号">Cavity Number</Sys:String>
+    <Sys:String x:Key="X贴合补偿">X Mounting Compensation</Sys:String>
+    <Sys:String x:Key="Y贴合补偿">Y Mounting Compensation</Sys:String>
+
+    <Sys:String x:Key="XY设置为当前坐标">Set XY to Current Coordinates</Sys:String>
+    <Sys:String x:Key="移动到点位坐标">Move to Point Coordinates</Sys:String>
+    <Sys:String x:Key="当前位置视觉定位Mark">Current Position Vision Locate Mark</Sys:String>
+    <Sys:String x:Key="当前位置视觉获取二维码">Current Position Vision Get QR Code</Sys:String>
+
+    <Sys:String x:Key="添加">Add</Sys:String>
+    <Sys:String x:Key="删除">Delete</Sys:String>
+    <Sys:String x:Key="上移">Move Up</Sys:String>
+    <Sys:String x:Key="下移">Move Down</Sys:String>
+    <Sys:String x:Key="阵列">Array</Sys:String>
+    <Sys:String x:Key="导出日志">Export Log</Sys:String>
+    <Sys:String x:Key="清空日志">Clear Log</Sys:String>
+
+    <Sys:String x:Key="备份">Backup</Sys:String>
+    <Sys:String x:Key="确定">Confirm</Sys:String>
+    <Sys:String x:Key="取消">Cancel</Sys:String>
+
+    <Sys:String x:Key="LineName（线别）：">LineName（Line）：</Sys:String>
+    <Sys:String x:Key="StationName（站别）：">StationName（Station）：</Sys:String>
+    <Sys:String x:Key="允许修改参数">Allow Parameter Modification</Sys:String>
+    <Sys:String x:Key="保存参数">Save Parameters</Sys:String>
+
+    <Sys:String x:Key="自动上传图片">Auto Upload Images</Sys:String>
+    <Sys:String x:Key="服务器状态">Server Status</Sys:String>
+    <Sys:String x:Key="当前上传本地文件夹路径">Current Upload Local Folder Path</Sys:String>
+    <Sys:String x:Key="选择文件夹">Select Folder</Sys:String>
+    <Sys:String x:Key="上传单个文件夹">Upload Single Folder</Sys:String>
+    <Sys:String x:Key="自动上传全部文件夹">Auto Upload All Folders</Sys:String>
+    <Sys:String x:Key="打开FTP文件夹">Open FTP Folder</Sys:String>
+    <Sys:String x:Key="压缩进度">Compression Progress</Sys:String>
+    <Sys:String x:Key="上传进度">Upload Progress</Sys:String>
+
+    <Sys:String x:Key="刷新读取地址">Refresh Read Address</Sys:String>
+    <Sys:String x:Key="刷新写入地址">Refresh Write Address</Sys:String>
+    <Sys:String x:Key="重新连接PLC">Reconnect PLC</Sys:String>
+    <Sys:String x:Key="读取地址">Read Address</Sys:String>
+    <Sys:String x:Key="写入地址">Write Address</Sys:String>
+    <Sys:String x:Key="写入PLC当前地址">Write PLC Current Address</Sys:String>
+
+    <Sys:String x:Key="触发扫码">Trigger Barcode Scan</Sys:String>
+    <Sys:String x:Key="扫码">Scan Barcode</Sys:String>
+
+    <Sys:String x:Key="用户：">User：</Sys:String>
+    <Sys:String x:Key="密码：">Password：</Sys:String>
+    <Sys:String x:Key="登录">Login</Sys:String>
+
+    <Sys:String x:Key="相机设置">Camera Settings</Sys:String>
+    <Sys:String x:Key="Hive系统设置">Hive System Settings</Sys:String>
+    <Sys:String x:Key="MES设置">MES Settings</Sys:String>
+    <Sys:String x:Key="其他设置">Other Settings</Sys:String>
+    <Sys:String x:Key="PLC设置">PLC Settings</Sys:String>
+    <Sys:String x:Key="扫码枪设置">Barcode Scanner Settings</Sys:String>
+
+    <Sys:String x:Key="软件版本号">Software Version</Sys:String>
+    <Sys:String x:Key="HIVE界面">HIVE Interface</Sys:String>
+    <Sys:String x:Key="其他">Other</Sys:String>
+    <Sys:String x:Key="Site">Site</Sys:String>
+    <Sys:String x:Key="Vendor">Vendor</Sys:String>
+
+    <Sys:String x:Key="启用启动时上传Alarm信息">Enable Upload Alarm Info on Startup</Sys:String>
+    <Sys:String x:Key="B2BTape相关">B2BTape Related</Sys:String>
+    <Sys:String x:Key="B2BTapeSN位数">B2BTape SN Digit Count</Sys:String>
+    <Sys:String x:Key="所有B2BTapeIPN">All B2BTape IPN</Sys:String>
+    <Sys:String x:Key="所有调机B2BTapeSN">All Debug B2BTape SN</Sys:String>
+    <Sys:String x:Key="B2BTapeSN">B2BTape SN</Sys:String>
+    <Sys:String x:Key="B2BTapeVendor">B2BTape Vendor</Sys:String>
+    <Sys:String x:Key="B2BTape单卷最大物料数">B2BTape Max Parts Per Reel</Sys:String>
+    <Sys:String x:Key="B2BTape剩余预警物料数">B2BTape Remaining Warning Count</Sys:String>
+    <Sys:String x:Key="B2BTape物料名称">B2BTape Material Name</Sys:String>
+    <Sys:String x:Key="MES参数设定">MES Parameter Settings</Sys:String>
+    <Sys:String x:Key="本机是否绑定天线与SIP">Is This Machine Bound to Antenna and SIP</Sys:String>
+    <Sys:String x:Key="MES上传类型">MES Upload Type</Sys:String>
+    <Sys:String x:Key="Line">Line</Sys:String>
+    <Sys:String x:Key="Station">Station</Sys:String>
+    <Sys:String x:Key="App">App</Sys:String>
+    <Sys:String x:Key="Fixid">Fixid</Sys:String>
+
+    <Sys:String x:Key="连接">Connect</Sys:String>
+    <Sys:String x:Key="断开">Disconnect</Sys:String>
+    <Sys:String x:Key="启用">Enable</Sys:String>
+    <Sys:String x:Key="禁用">Disable</Sys:String>
+
+    <Sys:String x:Key="手动设定软件版本号">Manually Set Software Version</Sys:String>
+    <Sys:String x:Key="六层">Sixth Layer</Sys:String>
+    <Sys:String x:Key="五层">Fifth Layer</Sys:String>
+    <Sys:String x:Key="四层">Fourth Layer</Sys:String>
+    <Sys:String x:Key="三层">Third Layer</Sys:String>
+    <Sys:String x:Key="二层">Second Layer</Sys:String>
+    <Sys:String x:Key="一层">First Layer</Sys:String>
+    <Sys:String x:Key="复检NG仓状态">Re-inspection NG Bin Status</Sys:String>
+
+    <Sys:String x:Key="读PLC-NG仓状态起始地址">Read PLC - NG Bin Status Start Address</Sys:String>
+    <Sys:String x:Key="写PLC-保压结果是否写完">Write PLC - Is Pressure Hold Result Written</Sys:String>
+    <Sys:String x:Key="通讯">Communication</Sys:String>
+    <Sys:String x:Key="参数设置">Parameter Settings</Sys:String>
+
+    <Sys:String x:Key="AE_Vendor">AE_Vendor</Sys:String>
+    <Sys:String x:Key="machine_ID">machine_ID</Sys:String>
+    <Sys:String x:Key="Operator_ID">Operator_ID</Sys:String>
+    <Sys:String x:Key="Mode">Mode</Sys:String>
+    <Sys:String x:Key="TestSeriesID">TestSeriesID</Sys:String>
+    <Sys:String x:Key="Priority">Priority</Sys:String>
+    <Sys:String x:Key="online">online</Sys:String>
+    <Sys:String x:Key="UserName">UserName</Sys:String>
+    <Sys:String x:Key="Password">Password</Sys:String>
+    <Sys:String x:Key="本机IP">Local IP</Sys:String>
+    <Sys:String x:Key="启用获取前站TP数据并上传">Enable Get and Upload Previous Station TP Data</Sys:String>
+    <Sys:String x:Key="前站TP机MES IP">Previous Station TP Machine MES IP</Sys:String>
+    <Sys:String x:Key="NG产品允许上传">NG Product Upload Allowed</Sys:String>
+    <Sys:String x:Key="NG产品是否允许整板上传">NG Product Whole Board Upload Allowed</Sys:String>
+    <Sys:String x:Key="读PLC-带载具空跑模式标记">Read PLC - Carrier Dry Run Mode Mark</Sys:String>
+    <Sys:String x:Key="是否为大线">Is Large Line</Sys:String>
+    <Sys:String x:Key="贴合物料1名称">Mounting Material 1 Name</Sys:String>
+
+    <Sys:String x:Key="写PLC-控制PLC按钮">Write PLC - Control PLC Button</Sys:String>
+    <Sys:String x:Key="是否为量产">Is Mass Production</Sys:String>
+
+    <Sys:String x:Key="扫码与MES">Barcode Scan and MES</Sys:String>
+    <Sys:String x:Key="载具码：">Carrier Code：</Sys:String>
+    <Sys:String x:Key="排线码：">Harness Code：</Sys:String>
+    <Sys:String x:Key="扫载具码">Scan Carrier Code</Sys:String>
+    <Sys:String x:Key="获取排线码">Get Harness Code</Sys:String>
+    <Sys:String x:Key="获取SIP码">Get SIP Code</Sys:String>
+    <Sys:String x:Key="查询路由及穴位">Query Route and Cavity</Sys:String>
+    <Sys:String x:Key="绑定MES">Bind MES</Sys:String>
+    <Sys:String x:Key="一键查询绑定">One-Click Query and Bind</Sys:String>
+    <Sys:String x:Key="一键清除表格">One-Click Clear Table</Sys:String>
+    <Sys:String x:Key="卷料SN：">Reel SN：</Sys:String>
+    <Sys:String x:Key="查询次数">Query Count</Sys:String>
+    <Sys:String x:Key="使用次数：">Usage Count：</Sys:String>
+
+    <Sys:String x:Key="Tape相关">Tape Related</Sys:String>
+    <Sys:String x:Key="TapeSN位数">Tape SN Digit Count</Sys:String>
+    <Sys:String x:Key="所有TapeIPN">All Tape IPN</Sys:String>
+    <Sys:String x:Key="所有调机TapeSN">All Debug Tape SN</Sys:String>
+    <Sys:String x:Key="TapeSN">Tape SN</Sys:String>
+    <Sys:String x:Key="TapeVendor">Tape Vendor</Sys:String>
+    <Sys:String x:Key="Tape单卷最大物料数">Tape Max Parts Per Reel</Sys:String>
+    <Sys:String x:Key="Tape剩余预警物料数">Tape Remaining Warning Count</Sys:String>
+    <Sys:String x:Key="Tape物料名称">Tape Material Name</Sys:String>
+    <Sys:String x:Key="MesIP">MesIP</Sys:String>
+    <Sys:String x:Key="操作人员编号">Operator ID</Sys:String>
+    <Sys:String x:Key="启用MES查询软件版本">Enable MES Query Software Version</Sys:String>
+
+    <Sys:String x:Key="撕膜扫码触发">Release Film Scan Trigger</Sys:String>
+    <Sys:String x:Key="复检扫码触发">Re-inspection Scan Trigger</Sys:String>
+    <Sys:String x:Key="排线扫码触发">Harness Scan Trigger</Sys:String>
+
+    <Sys:String x:Key="写入整形">Write Integer</Sys:String>
+    <Sys:String x:Key="读取整形">Read Integer</Sys:String>
+    
+    <Sys:String x:Key="写入字符串">Write String</Sys:String>
+    <Sys:String x:Key="读取字符串">Read String</Sys:String>
+    <Sys:String x:Key="发送测试">Send Test</Sys:String>
+</ResourceDictionary>

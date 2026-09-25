@@ -1,0 +1,169 @@
+﻿<UserControl x:Class="QA.SpotCheckPages.Calibration.Views.JointCalibView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:local="clr-namespace:QA.SpotCheckPages.Calibration.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinQuick.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <hc:ScrollViewer>
+            <UniformGrid Columns="1" Rows="1" Margin="0,0,0,10">
+                <UniformGrid Columns="1" Rows="20">
+                    <!--<UniformGrid Columns="4" Rows="5">
+                     
+                    </UniformGrid>-->
+                    <UniformGrid Columns="1" Rows="1" MaxHeight="40">
+
+                        <TextBlock  Text="---设置从固定点取标定标定片坐标---" 
+                                    FontSize="18" MinWidth="550" MinHeight="35" TextWrapping="Wrap"  HorizontalAlignment="Stretch"  Padding="0,10"></TextBlock>
+                    </UniformGrid>
+
+                    <UniformGrid Columns="4" Rows="1" MaxHeight="40">
+                        <Button x:Name="SetFetchPlateNo1Pos" Content="设置取标定片1号吸嘴坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                            cal:Message.Attach="[Event Click] = [Action SetFetchPlateNo1Pos]"></Button>
+                        <Button x:Name="MoveSpaceFetchPlateNo1Pos" Content="空移取标定片1号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action MoveSpaceFetchPlateNo1Pos]"></Button>
+                        <TextBlock  Text="{Binding CurFetchPlateJointCalibPosNozzleNo1}" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+
+                    </UniformGrid>
+                    <UniformGrid Columns="4" Rows="1" MaxHeight="40">
+                        <Button x:Name="SetFetchPlateNo2Pos" Content="设置取标定片2号吸嘴坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                            cal:Message.Attach="[Event Click] = [Action SetFetchPlateNo2Pos]"></Button>
+                        <Button x:Name="MoveSpaceFetchPlateNo2Pos" Content="空移取标定片2号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action MoveSpaceFetchPlateNo2Pos]"></Button>
+                        <TextBlock  Text="{Binding CurFetchPlateJointCalibPosNozzleNo2}" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+
+                    </UniformGrid>
+                    <UniformGrid Columns="4" Rows="1" MaxHeight="40">
+                        <Button x:Name="SetFetchPlateNo3Pos" Content="设置取标定片3号吸嘴坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                            cal:Message.Attach="[Event Click] = [Action SetFetchPlateNo3Pos]"></Button>
+                        <Button x:Name="MoveSpaceFetchPlateNo3Pos" Content="空移取标定片3号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action MoveSpaceFetchPlateNo3Pos]"></Button>
+                        <TextBlock  Text="{Binding CurFetchPlateJointCalibPosNozzleNo3}" cal:Message.Attach="[Event Click] = [Action Restsafepos]" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+
+                    </UniformGrid>
+                    <UniformGrid Columns="4" Rows="1" MaxHeight="40">
+                        <Button x:Name="SetFetchPlateNo4Pos" Content="设置取标定片4号吸嘴坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                            cal:Message.Attach="[Event Click] = [Action SetFetchPlateNo4Pos]"></Button>
+                        <Button x:Name="MoveSpaceFetchPlateNo4Pos" Content="空移取标定片4号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action MoveSpaceFetchPlateNo4Pos]"></Button>
+                        <TextBlock  Text="{Binding CurFetchPlateJointCalibPosNozzleNo4}" cal:Message.Attach="[Event Click] = [Action Restsafepos]" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+
+                    </UniformGrid>
+
+                    <UniformGrid Columns="1" Rows="1" MaxHeight="40">
+
+                        <TextBlock  Text="---设置上相机定位标定片坐标---" 
+                                    FontSize="18" MinWidth="550" MinHeight="35" TextWrapping="Wrap"  HorizontalAlignment="Stretch"  Padding="0,10"></TextBlock>
+                    </UniformGrid>
+
+
+                    <UniformGrid Columns="4" Rows="1" MaxHeight="40">
+                        <Button x:Name="SetFovPlateInCarrierNo1PosToUpCamera" Content="设置上相机载具标定片1号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                            cal:Message.Attach="[Event Click] = [Action SetFovPlateInCarrierPosToUpCamera(1)]"></Button>
+                        <Button x:Name="MoveSpaceFovPlateInCarrierNo1PosToUpCamera" Content="空移上相机载具标定片1号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action MoveSpaceFovPlateInCarrierPosToUpCamera(1)]"></Button>
+                        <TextBlock  Text="{Binding CurCarrierJointCalibPosNo1}" cal:Message.Attach="[Event Click] = [Action Restsafepos]" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+                       
+                    </UniformGrid>
+
+                    <UniformGrid Columns="4" Rows="1" MaxHeight="40">
+                        <Button x:Name="SetFovPlateInCarrierNo2PosToUpCamera" Content="设置上相机载具标定片2号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action SetFovPlateInCarrierPosToUpCamera(2)]"></Button>
+                        <Button x:Name="MoveSpaceFovPlateInCarrierNo2PosToUpCamera" Content="空移上相机载具标定片2号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action MoveSpaceFovPlateInCarrierPosToUpCamera(2)]"></Button>
+                        <TextBlock  Text="{Binding CurCarrierJointCalibPosNo2}" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+                    </UniformGrid>
+
+                    <UniformGrid Columns="4" Rows="1" MaxHeight="40">
+                        <Button x:Name="SetFovPlateInCarrierNo3PosToUpCamera" Content="设置上相机载具标定片3号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action SetFovPlateInCarrierPosToUpCamera(3)]"></Button>
+                        <Button x:Name="MoveSpaceFovPlateInCarrierNo3PosToUpCamera" Content="空移上相机载具标定片3号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action MoveSpaceFovPlateInCarrierPosToUpCamera(3)]"></Button>
+                        <TextBlock  Text="{Binding CurCarrierJointCalibPosNo3}" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+                    </UniformGrid>
+
+                    <UniformGrid Columns="4" Rows="1" MaxHeight="40">
+                        <Button x:Name="SetFovPlateInCarrierNo4PosToUpCamera" Content="设置上相机载具标定片4号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action SetFovPlateInCarrierPosToUpCamera(4)]"></Button>
+                        <Button x:Name="MoveSpaceFovPlateInCarrierNo4PosToUpCamera" Content="空移上相机载具标定片4号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action MoveSpaceFovPlateInCarrierPosToUpCamera(4)]"></Button>
+                        <TextBlock  Text="{Binding CurCarrierJointCalibPosNo4}" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+                    </UniformGrid>
+
+                    <UniformGrid Columns="1" Rows="1" MaxHeight="40">
+
+                        <TextBlock  Text="---设置从载具上吸嘴 吸取标定片坐标---" 
+                                    FontSize="18" MinWidth="550" MinHeight="35" TextWrapping="Wrap"  HorizontalAlignment="Stretch"  Padding="0,10"></TextBlock>
+                    </UniformGrid>
+
+                    <UniformGrid Columns="4" Rows="1">
+                        <Button x:Name="SetNozzleNo1SucPieceCalibNo1Pos" Content="设置1号嘴吸取标定片1号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action SetNozzleNo1SucPieceCalibPos(1)]"></Button>
+                        <Button x:Name="MoveSpaceNozzleNo1SucPieceCalibNo1Pos" Content="空移1号嘴吸取标定片1号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action MoveSpaceNozzleNo1SucPieceCalibPos(1)]"></Button>
+                        <TextBlock  Text="{Binding CurNozzleNo1SucPiecePosNo1}" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+                    </UniformGrid>
+
+                    <UniformGrid Columns="4" Rows="1">
+                        <Button x:Name="SetNozzleNo1SucPieceCalibNo2Pos" Content="设置1号嘴吸取标定片2号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action SetNozzleNo1SucPieceCalibPos(2)]"></Button>
+                        <Button x:Name="MoveSpaceNozzleNo1SucPieceCalibNo2Pos" Content="空移1号嘴吸取标定片2号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action MoveSpaceNozzleNo1SucPieceCalibPos(2)]"></Button>
+                        <TextBlock  Text="{Binding CurNozzleNo1SucPiecePosNo2}" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+                    </UniformGrid>
+
+                    <UniformGrid Columns="4" Rows="1">
+                        <Button x:Name="SetNozzleNo1SucPieceCalibNo3Pos" Content="设置1号嘴吸取标定片3号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action SetNozzleNo1SucPieceCalibPos(3)]"></Button>
+                        <Button x:Name="MoveSpaceNozzleNo1SucPieceCalibNo3Pos" Content="空移1号嘴吸取标定片3号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action MoveSpaceNozzleNo1SucPieceCalibPos(3)]"></Button>
+                        <TextBlock  Text="{Binding CurNozzleNo1SucPiecePosNo3}" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+                    </UniformGrid>
+
+                    <UniformGrid Columns="4" Rows="1">
+                        <Button x:Name="SetNozzleNo1SucPieceCalibNo4Pos" Content="设置1号嘴吸取标定片4号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action SetNozzleNo1SucPieceCalibPos(4)]"></Button>
+                        <Button x:Name="MoveSpaceNozzleNo1SucPieceCalibNo4Pos" Content="空移1号嘴吸取标定片4号坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                                cal:Message.Attach="[Event Click] = [Action MoveSpaceNozzleNo1SucPieceCalibPos(4)]"></Button>
+                        <TextBlock  Text="{Binding CurNozzleNo1SucPiecePosNo4}" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+                    </UniformGrid>
+                    <UniformGrid Columns="1" Rows="1" MaxHeight="40">
+
+                        <TextBlock  Text="---设置吸嘴吸取标定片到下视觉拍照坐标---"
+                                    FontSize="18" MinWidth="550" MinHeight="35" TextWrapping="Wrap"  HorizontalAlignment="Stretch"  Padding="0,10"></TextBlock>
+                    </UniformGrid>
+                    <UniformGrid Columns="4" Rows="1" MaxHeight="40">
+                        <Button x:Name="SetNozzleNo1CalibPos" Content="设置1号吸嘴标定坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"></Button>
+                        <Button x:Name="MoveSpaceNozzleCalibPos" Content="空移1号吸嘴标定坐标" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"></Button>
+                        <TextBlock  Text="{Binding CurNozzleNo1JointCalibPos}" FontSize="18" Width="200" Height="35" Padding="0,10"></TextBlock>
+                    </UniformGrid>
+                    <UniformGrid Columns="1" Rows="1" MaxHeight="40">
+
+                        <TextBlock  Text="联合标定步骤：(1)上相机拍载具标定片-->(2)1号吸嘴吸取载具标定片到下相机走11点标定-->(3)吸嘴吸标定片移动到Feeder上，上相机拍标定片标定
+                                           &#x0a;&#x0d; (2)
+                                      "
+                                    FontSize="18" MinWidth="550" MinHeight="80" TextWrapping="Wrap"  HorizontalAlignment="Stretch"  Padding="0,3"></TextBlock>
+                    </UniformGrid>
+                    <UniformGrid Columns="4" Rows="1">
+                        <Button x:Name="SetAutoJointCalib" Content="自动联合标定" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"></Button>
+
+                        <TextBlock  Text="" FontSize="18" Width="150" Height="35" Padding="0,10"></TextBlock>
+                    </UniformGrid>
+
+                </UniformGrid>
+            </UniformGrid>
+        </hc:ScrollViewer>
+    </Grid>
+</UserControl>

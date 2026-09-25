@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="QA.SpotCheckPages.Calibration.Views.FindCameraCenterCalibView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:local="clr-namespace:QA.SpotCheckPages.Calibration.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinQuick.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <UniformGrid Columns="1" Rows="12">
+            <UniformGrid Columns="3" Rows="1" >
+                <Button x:Name="SetFeederPickMaterialPos" Content="设置飞达取料坐标" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"></Button>
+                <Button x:Name="MoveSpacePosToFeederPickMaterial" Content="空移飞达取料位置" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"></Button>
+                <TextBlock Text="{Binding CurAxisFeederPickPos}" Margin="5,5" FontSize="18" Width="250" Height="35"></TextBlock>
+            </UniformGrid>
+            <UniformGrid Columns="3" Rows="1" >
+                <Button x:Name="SetFeederPickMaterialR1Pos" Content="设置1号吸嘴取料坐标" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach ="[Event Click] = [Action SetFeederSucAngle(1)]"></Button>
+                <Button x:Name="MoveSpaceR1PosToFeederPickMaterial"  Content="空移1号吸嘴取料位置" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach ="[Event Click] = [Action MoveSpaceFeederSucAngle(1)]"></Button>
+                <TextBlock  Text="{Binding CurAxisFeederPickR1Pos}" Margin="5,5" FontSize="18" Width="250" Height="35"></TextBlock>
+            </UniformGrid>
+            <UniformGrid Columns="3" Rows="1" >
+                <Button x:Name="SetFeederPickMaterialR2Pos" Content="设置2号吸嘴取料坐标" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach ="[Event Click] = [Action SetFeederSucAngle(2)]"></Button>
+                <Button x:Name="MoveSpaceR2PosToFeederPickMaterial"  Content="空移2号吸嘴取料位置" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach ="[Event Click] = [Action MoveSpaceFeederSucAngle(2)]"></Button>
+                <TextBlock  Text="{Binding CurAxisFeederPickR2Pos}" Margin="5,5" FontSize="18" Width="250" Height="35"></TextBlock>
+            </UniformGrid>
+            <UniformGrid Columns="3" Rows="1" >
+                <Button x:Name="SetFeederPickMaterialR3Pos" Content="设置3号吸嘴取料坐标" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach ="[Event Click] = [Action SetFeederSucAngle(3)]"></Button>
+                <Button x:Name="MoveSpaceR3PosToFeederPickMaterial"  Content="空移3号吸嘴取料位置" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach ="[Event Click] = [Action MoveSpaceFeederSucAngle(3)]"></Button>
+                <TextBlock  Text="{Binding CurAxisFeederPickR3Pos}" Margin="5,5" FontSize="18" Width="250" Height="35"></TextBlock>
+            </UniformGrid>
+            <UniformGrid Columns="3" Rows="1" >
+                <Button x:Name="SetFeederPickMaterialR4Pos" Content="设置4号吸嘴取料坐标" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach ="[Event Click] = [Action SetFeederSucAngle(4)]"></Button>
+                <Button x:Name="MoveSpaceR4PosToFeederPickMaterial"  Content="空移4号吸嘴取料位置" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach ="[Event Click] = [Action MoveSpaceFeederSucAngle(4)]"></Button>
+                <TextBlock  Text="{Binding CurAxisFeederPickR4Pos}" Margin="5,5" FontSize="18" Width="250" Height="35"></TextBlock>
+            </UniformGrid>
+            <UniformGrid Columns="3" Rows="1" >
+                <Button x:Name="SetNozzleNo1DownCameraPos" Content="设置下相机1号吸嘴坐标" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach="[Event Click] = [Action SetPosToDownCamera_Nozzle(1)]"/>
+
+                <Button x:Name="MoveSpacePosToNozzleNo1DownCamera"  Content="空移下相机1号吸嘴位置" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach="[Event Click] = [Action MoveSpacePosToDownCamera_Nozzle(1)]"></Button>
+                <TextBlock  Text="{Binding CurCamNo2NozzleNo1Pos}" Margin="5,5" FontSize="18" Width="250" Height="35"></TextBlock>
+            </UniformGrid>
+            <UniformGrid Columns="3" Rows="1" >
+                <Button x:Name="SetNozzleNo2DownCameraPos" Content="设置下相机2号吸嘴坐标" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach="[Event Click] = [Action SetPosToDownCamera_Nozzle(2)]"/>
+
+                <Button x:Name="MoveSpacePosToNozzleNo2DownCamera"  Content="空移下相机2号吸嘴位置" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach="[Event Click] = [Action MoveSpacePosToDownCamera_Nozzle(2)]"></Button>
+                <TextBlock  Text="{Binding CurCamNo2NozzleNo2Pos}" Margin="5,5" FontSize="18" Width="250" Height="35"></TextBlock>
+            </UniformGrid>
+            <UniformGrid Columns="3" Rows="1" >
+                <Button x:Name="SetNozzleNo3DownCameraPos" Content="设置下相机3号吸嘴坐标" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach="[Event Click] = [Action SetPosToDownCamera_Nozzle(3)]"></Button>
+
+                <Button x:Name="MoveSpacePosToNozzleNo3DownCamera"  Content="空移下相机3号吸嘴位置" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach="[Event Click] = [Action MoveSpacePosToDownCamera_Nozzle(3)]"></Button>
+                <TextBlock  Text="{Binding CurCamNo2NozzleNo3Pos}" Margin="5,5" FontSize="18" Width="250" Height="35"></TextBlock>
+            </UniformGrid>
+            <UniformGrid Columns="3" Rows="1" >
+                <Button x:Name="SetNozzleNo4DownCameraPos" Content="设置下相机4号吸嘴坐标" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach="[Event Click] = [Action SetPosToDownCamera_Nozzle(4)]"></Button>
+
+                <Button x:Name="MoveSpacePosToNozzleNo4DownCamera"  Content="空移下相机4号吸嘴位置" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        cal:Message.Attach="[Event Click] = [Action MoveSpacePosToDownCamera_Nozzle(4)]"></Button>
+                <TextBlock  Text="{Binding CurCamNo2NozzleNo4Pos}" Margin="5,5" FontSize="18" Width="250" Height="35"></TextBlock>
+            </UniformGrid>
+
+            <UniformGrid Columns="3" Rows="1" >
+                <Button x:Name="SetNgMaterialPos" Content="设置NG料仓坐标" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        ></Button>
+                <Button x:Name="MoveSpacePosToNgMaterial"  Content="空移Ng料仓位置" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        ></Button>
+                <TextBlock  Text="{Binding CurNgMaterialPos}" Margin="5,5" FontSize="18" Width="250" Height="35"></TextBlock>
+            </UniformGrid>
+
+            <UniformGrid Columns="3" Rows="1" >
+                <Button x:Name="SetCarrierCodePos" Content="设置扫载具码坐标" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        />
+                <Button x:Name="MoveSpacePosToCarrierCode"  Content="空移扫载具码位置" Margin="5,5" Width="180" Height="35" Style="{DynamicResource ButtonPrimary}"
+                        ></Button>
+                <TextBlock Text="{Binding CurCarrierScannerPos}" Margin="5,5" FontSize="18" Width="250" Height="35"></TextBlock>
+            </UniformGrid>
+
+        </UniformGrid>
+    </Grid>
+</UserControl>

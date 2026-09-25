@@ -1,0 +1,1788 @@
+﻿<UserControl
+    x:Class="QA.Pages.Views.ProductivityPageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:convert="clr-namespace:QA.Business.Converts;assembly=QA.Business"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:QA.Pages.Views"
+    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="clr-namespace:QA.UserControls;assembly=QA.UserControls"
+    Margin="5"
+    d:DesignHeight="960"
+    d:DesignWidth="1280"
+    FontFamily="微软雅黑"
+    FontSize="18"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinQuick.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
+                <ResourceDictionary Source="/QA.Pages;component/Styles/GroupBoxStyle1.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="QuickGreen" Color="#008D86" />
+            <Thickness x:Key="Padding1">3</Thickness>
+            <convert:PcsConvert x:Key="PcsConvert" />
+            <convert:FloatToSecondConvert x:Key="FloatToSecondConvert" />
+            <convert:FloatToPercentConvert x:Key="FloatToPercentConvert" />
+            <convert:BoolToConnectStringConvert x:Key="BoolToConnectStringConvert" />
+            <convert:BoolToBackgroundConvert x:Key="BoolToBackgroundConvert" />
+
+            <convert:TriStateToConnectStringConvert x:Key="TriStateToConnectStringConvert" />
+            <convert:TriStateToBackgroundConvert x:Key="TriStateToBackgroundConvert" />
+
+            <convert:BoolToEnableStringConvert x:Key="BoolToEnableStringConvert" />
+            <convert:InfoLevelToColorConvert x:Key="InfoLevelToColorConvert" />
+            <convert:BoolToVisibleHiddenConvert x:Key="BoolToVisibleHiddenConvert" />
+            <Style x:Key="MoveFont" TargetType="TextBlock">
+                <Setter Property="TextBlock.FontFamily" Value="微软雅黑" />
+                <Setter Property="TextBlock.Width" Value="100" />
+                <Setter Property="TextBlock.Height" Value="30" />
+                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                <Setter Property="TextBlock.Padding" Value="2" />
+                <Setter Property="TextBlock.HorizontalAlignment" Value="Center" />
+                <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
+                <Setter Property="TextBlock.FontSize" Value="18" />
+                <Setter Property="TextBlock.Foreground" Value="Black" />
+                <Style.Triggers>
+                    <Trigger Property="TextBlock.IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Background" Value="#008D86" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <TabControl>
+        <TabItem
+            Width="200"
+            FontSize="18"
+            Header="{DynamicResource 图表}">
+            <Grid Background="#FFDEDEDE">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition />
+                    <RowDefinition Height="40" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <GroupBox Margin="5" Header="{DynamicResource 一天产量}" />
+                <Grid Grid.Row="1" Margin="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="4*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{DynamicResource 选择日期}" />
+                            <DatePicker Grid.Column="1" SelectedDate="{Binding ChoicetData}" />
+                            <!--<Button Grid.Column="2" Content="打开数据文件夹" FontSize="18" Height="40" Width="160"
+                                    HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                                    cal:Message.Attach="[Event Click] = [Action OpenFolder]"/>-->
+                        </Grid>
+                        <lvc:CartesianChart
+                            Grid.Row="1"
+                            LegendLocation="Top"
+                            Series="{Binding ToDayHistogramSeriesCollection}">
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis Title="小时" Labels="{Binding Labels}">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator Step="1" />
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis Title="产量(Pcs)" LabelFormatter="{Binding Formatter}">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+                        <lvc:PieChart
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Hoverable="False"
+                            LegendLocation="Bottom"
+                            Series="{Binding ToDayPieSeriesCollection}" />
+                    </Grid>
+                </Grid>
+                <GroupBox
+                    Grid.Row="2"
+                    Margin="5"
+                    Header="{DynamicResource 一段时间内产量}" />
+                <Grid Grid.Row="3" Margin="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="4*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{DynamicResource 起始日期}" />
+                            <DatePicker
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                SelectedDate="{Binding StartData}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{DynamicResource 结束日期}" />
+                            <DatePicker
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                SelectedDate="{Binding EndData}" />
+                        </Grid>
+                        <lvc:CartesianChart
+                            Grid.Row="3"
+                            LegendLocation="Top"
+                            Series="{Binding ChoiceTimeSlotHistogramSeriesCollection}">
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis Title="天" Labels="{Binding ChoiceTimeSlotLabels}" />
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis Title="产量(Pcs)" LabelFormatter="{Binding Formatter}" />
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+                        <lvc:PieChart
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Hoverable="False"
+                            LegendLocation="Bottom"
+                            Series="{Binding ChoiceTimeSlotPieSeriesCollection}" />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem
+            Width="200"
+            FontSize="18"
+            Header="{DynamicResource 数据}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="3*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <GroupBox
+                        Grid.Column="0"
+                        FontFamily="微软雅黑"
+                        Header="{DynamicResource 生产信息}"
+                        Style="{StaticResource GroupBoxStyle1}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="3" />
+                                <RowDefinition Height="6*" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    Height="Auto"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{DynamicResource 当前产量}"
+                                    FontSize="18" />
+                                <Label
+                                    Grid.Column="1"
+                                    Height="Auto"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{Binding Statistic.CurrentNum}"
+                                    FontSize="18" />
+                                <Button
+                                    Grid.Column="2"
+                                    Height="Auto"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    cal:Message.Attach="[Event Click] = [Action ResetCurrentNum]"
+                                    Content="{DynamicResource 重置}"
+                                    FontSize="18"
+                                    IsEnabled="{Binding EnableButtons}" />
+                                <Label
+                                    Grid.Column="4"
+                                    Height="Auto"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{DynamicResource 目标产量}"
+                                    FontSize="18" />
+                                <Label
+                                    Grid.Column="5"
+                                    Height="Auto"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{Binding Statistic.TargetNum}"
+                                    FontSize="18" />
+                                <Label
+                                    Grid.Column="7"
+                                    Height="Auto"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="CT"
+                                    FontSize="18" />
+                                <Label
+                                    Grid.Column="8"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{Binding CT.CycleCT, Converter={StaticResource FloatToSecondConvert}}"
+                                    FontSize="18" />
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{DynamicResource 产品总数}"
+                                    FontSize="18" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{Binding Statistic.ProductCount}"
+                                    FontSize="18" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{DynamicResource 复检OK}"
+                                    FontSize="18" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{Binding Statistic.OkCount}"
+                                    FontSize="18" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{DynamicResource 复检NG}"
+                                    FontSize="18" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{Binding Statistic.NgCount}"
+                                    FontSize="18" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="3"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{DynamicResource 良率}"
+                                    FontSize="18" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Content="{Binding Statistic.OkRate, Converter={StaticResource FloatToPercentConvert}}"
+                                    FontSize="18" />
+
+                                <Button
+                                    Grid.Row="1"
+                                    Grid.Column="4"
+                                    Height="Auto"
+                                    Padding="{StaticResource Padding1}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    cal:Message.Attach="[Event Click] = [Action ResetCount()]"
+                                    Content="{DynamicResource 清零}"
+                                    FontSize="18"
+                                    IsEnabled="{Binding EnableButtons}" />
+                            </Grid>
+                        </Grid>
+                    </GroupBox>
+                    <GridSplitter
+                        Grid.Column="1"
+                        Width="4"
+                        Margin="5,0,5,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{StaticResource QuickGreen}" />
+                    <GroupBox
+                        Grid.Column="2"
+                        FontFamily="微软雅黑"
+                        Header="{DynamicResource 模块信息}"
+                        Style="{StaticResource GroupBoxStyle1}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="PLC"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="{Binding ConnectState.IsPlcConnected, Converter={StaticResource TriStateToBackgroundConvert}}"
+                                Content="{Binding ConnectState.IsPlcConnected, Converter={StaticResource TriStateToConnectStringConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{DynamicResource 扫码枪}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="{Binding ConnectState.IsScannerConnected, Converter={StaticResource TriStateToBackgroundConvert}}"
+                                Content="{Binding ConnectState.IsScannerConnected, Converter={StaticResource TriStateToConnectStringConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{DynamicResource 视觉}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="{Binding ConnectState.IsVisionConnected, Converter={StaticResource TriStateToBackgroundConvert}}"
+                                Content="{Binding ConnectState.IsVisionConnected, Converter={StaticResource TriStateToConnectStringConvert}}"
+                                FontSize="18" />
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <GroupBox
+                        FontFamily="微软雅黑"
+                        Header="UPH"
+                        Style="{StaticResource GroupBoxStyle1}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="时间"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="计数"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="时间"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="计数"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="8:00-9:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph0, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="20:00-21:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph12, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="9:00-10:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph1, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="21:00-22:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph13, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="10:00-11:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph2, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="3"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="22:00-23:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="3"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph14, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="4"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="11:00-12:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="4"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph3, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="4"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="23:00-0:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="4"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph15, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="5"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="12:00-13:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="5"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph4, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="5"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="0:00-1:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="5"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph16, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="6"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="13:00-14:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="6"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph5, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="6"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="1:00-2:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="6"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph17, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="7"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="14:00-15:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="7"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph6, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="7"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="2:00-3:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="7"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph18, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="8"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="15:00-16:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="8"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph7, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="8"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="3:00-4:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="8"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph19, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="9"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="16:00-17:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="9"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph8, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="9"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="4:00-5:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="9"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph20, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="10"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="17:00-18:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="10"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph9, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="10"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="5:00-6:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="10"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph21, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="11"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="18:00-19:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="11"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph10, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="11"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="6:00-7:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="11"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph22, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="12"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="19:00-20:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="12"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph11, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="12"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="7:00-8:00"
+                                FontSize="18" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="12"
+                                Padding="{StaticResource Padding1}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{Binding Statistic.Uph23, Converter={StaticResource PcsConvert}}"
+                                FontSize="18" />
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <!--<TabItem
+            Width="200"
+            FontSize="18"
+            Header="Bumper抛料">
+            <Grid Background="#19447A">
+                --><!--旧的颜色 #20406A--><!--
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Content="StartTime" />
+                    <DatePicker
+                        Grid.Column="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        SelectedDate="{Binding TossingStartDataBumper}" />
+                    <Label
+                        Grid.Column="2"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Content="EndTime" />
+                    <DatePicker
+                        Grid.Column="3"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        SelectedDate="{Binding TossingEndDataBumper}" />
+                    <Label
+                        Grid.Column="4"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Content="Nozzle" />
+                    <ComboBox Grid.Column="5">
+                        <ComboBoxItem Content="1" />
+                        <ComboBoxItem Content="2" />
+                        <ComboBoxItem Content="3" />
+                        <ComboBoxItem Content="4" />
+                    </ComboBox>
+                    <Button
+                        Grid.Column="6"
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        cal:Message.Attach="[Event Click] = [Action QueryBumperTossingCount]"
+                        Content="Query"
+                        FontSize="16" />
+                    <Button
+                        Grid.Column="7"
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        cal:Message.Attach="[Event Click] = [Action OpenRecheckData]"
+                        Content="Save"
+                        FontSize="16" />
+                    <Button
+                        Grid.Column="8"
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        cal:Message.Attach="[Event Click] = [Action ChangeUPHTossing]"
+                        Content="{Binding UPHTossingButtonStr}"
+                        FontSize="16" />
+                    <Button
+                        Grid.Column="9"
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        cal:Message.Attach="[Event Click] = [Action ChangeUseMes]"
+                        Content="{Binding UseMesButtonStr}"
+                        FontSize="16" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Tossing Rate" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <TextBlock Grid.Row="1" Text="{Binding DayPieTossingTB}" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:PieChart
+                                Grid.Row="2"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Hoverable="False"
+                                Series="{Binding DayPieTossingSeriesCollection}" />
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="UPH Tossing By Hour" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding DayHistogramUPHSeriesCollection}"
+                                Visibility="{Binding ShowUPH, Converter={StaticResource BoolToVisibleHiddenConvert}}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Title="小时" Foreground="White" FontSize="18" Labels="{Binding Labels}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="产量(pcs)" Foreground="White" FontSize="18" LabelFormatter="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="20"
+                                Foreground="White"
+                                Series="{Binding DayHistogramTossingSeriesCollection}"
+                                Visibility="{Binding ShowTossing, Converter={StaticResource BoolToVisibleHiddenConvert}}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Title="小时" Foreground="White" FontSize="18" Labels="{Binding Labels}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="良率(%)" Foreground="White" FontSize="18" Labels="{Binding Formatter}" MinValue="0" MaxValue="100">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray" Step="20"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Tossing NG Summary" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding TossingReasonHistogramSeriesCollection}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Foreground="White" FontSize="18" Labels="{Binding LabelsTossReasonBumper}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="抛料(pcs)" Foreground="White" FontSize="18" Labels="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Tossing By Nozzle" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding NozzleHistogramTossingSeriesCollection}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Foreground="White" FontSize="18" Labels="{Binding LabelsNozzleBumper}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="抛料(pcs)" Foreground="White" FontSize="18" Labels="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="2" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Tossing By Day" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding WeekHistogramTossingSeriesCollection}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Foreground="White" FontSize="18" Labels="{Binding LabelsWeekBumper}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="抛料(pcs)" Foreground="White" FontSize="18" Labels="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </TabItem>-->
+        <TabItem
+            Width="200"
+            FontSize="18"
+            Header="抛料">
+            <Grid Background="#19447A">
+                <!--旧的颜色 #20406A-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Content="StartTime" />
+                    <DatePicker
+                        Grid.Column="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        SelectedDate="{Binding TossingStartDataGND}" />
+                    <Label
+                        Grid.Column="2"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Content="EndTime" />
+                    <DatePicker
+                        Grid.Column="3"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        SelectedDate="{Binding TossingEndDataGND}" />
+                    <Label
+                        Grid.Column="4"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Content="Nozzle" />
+                    <ComboBox Grid.Column="5">
+                        <ComboBoxItem Content="1" />
+                        <ComboBoxItem Content="2" />
+                    </ComboBox>
+                    <Button
+                        Grid.Column="6"
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        cal:Message.Attach="[Event Click] = [Action QueryGNDTossingCount]"
+                        Content="Query"
+                        FontSize="16" />
+                    <Button
+                        Grid.Column="7"
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        cal:Message.Attach="[Event Click] = [Action OpenRecheckData]"
+                        Content="Save"
+                        FontSize="16" />
+                    <Button
+                        Grid.Column="8"
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        cal:Message.Attach="[Event Click] = [Action ChangeUPHTossing]"
+                        Content="{Binding UPHTossingButtonStr}"
+                        FontSize="16" />
+                    <Button
+                        Grid.Column="9"
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        cal:Message.Attach="[Event Click] = [Action ChangeUseMes]"
+                        Content="{Binding UseMesButtonStr}"
+                        FontSize="16" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Tossing Rate" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <TextBlock Grid.Row="1" Text="{Binding DayPieTossingTB1}" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:PieChart
+                                Grid.Row="2"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Hoverable="False"
+                                Series="{Binding DayPieTossingSeriesCollection1}" />
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="UPH Tossing By Hour" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding DayHistogramUPHSeriesCollection1}"
+                                Visibility="{Binding ShowUPH, Converter={StaticResource BoolToVisibleHiddenConvert}}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Title="小时" Foreground="White" FontSize="18" Labels="{Binding Labels}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="产量(pcs)" Foreground="White" FontSize="18" LabelFormatter="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="20"
+                                Foreground="White"
+                                Series="{Binding DayHistogramTossingSeriesCollection1}"
+                                Visibility="{Binding ShowTossing, Converter={StaticResource BoolToVisibleHiddenConvert}}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Title="小时" Foreground="White" FontSize="18" Labels="{Binding Labels}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="良率(%)" Foreground="White" FontSize="18" Labels="{Binding Formatter}" MinValue="0" MaxValue="100">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray" Step="20"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Tossing NG Summary" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding TossingReasonHistogramSeriesCollection1}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Foreground="White" FontSize="18" Labels="{Binding LabelsTossReasonGND}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="抛料(pcs)" Foreground="White" FontSize="18" Labels="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Tossing By Nozzle" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding NozzleHistogramTossingSeriesCollection1}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Foreground="White" FontSize="18" Labels="{Binding LabelsNozzleGND}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="抛料(pcs)" Foreground="White" FontSize="18" Labels="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="2" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Tossing By Day" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding WeekHistogramTossingSeriesCollection1}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Foreground="White" FontSize="18" Labels="{Binding LabelsWeekGND}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="抛料(pcs)" Foreground="White" FontSize="18" Labels="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem
+            Width="200"
+            FontSize="18"
+            Header="复检"
+            Selector.IsSelected="True">
+            <Grid Background="#19447A">
+                <!--旧的颜色 #20406A-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Content="StartTime" />
+                    <DatePicker Grid.Column="1" SelectedDate="{Binding RecheckNGStartData}" />
+                    <Label
+                        Grid.Column="2"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Content="EndTime" />
+                    <DatePicker Grid.Column="3" SelectedDate="{Binding RecheckNGEndData}" />
+                    <Label
+                        Grid.Column="4"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Content="Nozzle" />
+                    <ComboBox Grid.Column="5">
+                        <ComboBoxItem Content="1" />
+                        <ComboBoxItem Content="2" />
+                        <ComboBoxItem Content="3" />
+                        <ComboBoxItem Content="4" />
+                    </ComboBox>
+                    <Button
+                        Grid.Column="6"
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        cal:Message.Attach="[Event Click]=[Action QueryRecheckNGCount]"
+                        Content="Query"
+                        FontSize="16" />
+                    <Button
+                        Grid.Column="7"
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        cal:Message.Attach="[Event Click] = [Action OpenRecheckData]"
+                        Content="Save"
+                        FontSize="16" />
+                    <Button
+                        Grid.Column="8"
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        cal:Message.Attach="[Event Click] = [Action ChangeUPHTossing]"
+                        Content="{Binding UPHTossingButtonStr}"
+                        FontSize="16" />
+                    <Button
+                        Grid.Column="9"
+                        Height="auto"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        cal:Message.Attach="[Event Click] = [Action ChangeUseMes]"
+                        Content="{Binding UseMesButtonStr}"
+                        FontSize="16" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Recheck Rate" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <TextBlock Grid.Row="1" Text="{Binding DayPieReckeckTB}" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:PieChart
+                                Grid.Row="2"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Hoverable="False"
+                                Series="{Binding DayPieReckeckSeriesCollection}" />
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="UPH Recheck By Hour" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding DayHistogramUPHSeriesCollection2}"
+                                Visibility="{Binding ShowUPH, Converter={StaticResource BoolToVisibleHiddenConvert}}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Title="小时" Foreground="White" FontSize="18" Labels="{Binding Labels}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="产量(pcs)" Foreground="White" FontSize="18" LabelFormatter="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="20"
+                                Foreground="White"
+                                Series="{Binding DayHistogramTossingSeriesCollection2}"
+                                Visibility="{Binding ShowTossing, Converter={StaticResource BoolToVisibleHiddenConvert}}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Title="小时" Foreground="White" FontSize="18" Labels="{Binding Labels}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="良率(%)" Foreground="White" FontSize="18" Labels="{Binding Formatter}" MinValue="0" MaxValue="100">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray" Step="20"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Recheck By Day" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                Name="RecheckWeekChart"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding WeekReckeckNGHistogramSeriesCollection}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Foreground="White" FontSize="18" Labels="{Binding LabelsWeekRecheck}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="复检NG(pcs)" Foreground="White" FontSize="18" Labels="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Recheck NG By Nozzle" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding NozzleHistogramReckeckSeriesCollection}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Foreground="White" FontSize="18" Labels="{Binding LabelsNozzle}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="数量(pcs)" Foreground="White" FontSize="18" Labels="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Recheck NG Summary" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding ReckeckNGReasonHistogramSeriesCollection}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Foreground="White" FontSize="18" Labels="{Binding LabelsReacheckReason}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="数量(pcs)" Foreground="White" FontSize="18" Labels="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" Margin="4" BorderBrush="#0096FF" BorderThickness="2" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Recheck By Cavity" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="White" FontSize="18" />
+                            <lvc:CartesianChart
+                                Grid.Row="1"
+                                FontFamily="黑体"
+                                FontSize="24"
+                                Foreground="White"
+                                Series="{Binding CavityHistogramReckeckSeriesCollection}">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Foreground="White" FontSize="18" Labels="{Binding LabelsCavity}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="数量(pcs)" Foreground="White" FontSize="18" Labels="{Binding Formatter}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False" Stroke="LightGray"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</UserControl>

@@ -1,0 +1,71 @@
+﻿<!--20250716 刷卡-->
+<UserControl x:Class="QA.UserControls.Views.UserManageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QA.UserControls.Views"
+             mc:Ignorable="d" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:cal="http://www.caliburnproject.org"
+             d:DesignHeight="450" d:DesignWidth="800" Height="600" Width="1000"
+             FontFamily="微软雅黑" FontSize="18">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinQuick.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView Grid.Column="0" Margin="5" ItemsSource="{Binding Users}" SelectedItem="{Binding SltUser}"
+                  cal:Message.Attach="[Event SelectionChanged] = [Action SelectUserChange]">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="权限" Width="120" DisplayMemberBinding="{Binding UserType}"/>
+                    <GridViewColumn Header="用户" Width="120" DisplayMemberBinding="{Binding UserName}"/>
+                    <GridViewColumn Header="密码" Width="120" DisplayMemberBinding="{Binding Password}"/>
+                    <GridViewColumn Header="卡号" Width="120" DisplayMemberBinding="{Binding CardID}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Column="1" Background="Azure">
+            <DockPanel LastChildFill="True" Margin="5,5,5,0">
+                <Label Content="权限：" MinWidth="100"/>
+                <ComboBox ItemsSource="{Binding UserTypes}" SelectedItem="{Binding CurrUserType}"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True" Margin="5,5,5,0">
+                <Label Content="用户：" MinWidth="100"/>
+                <TextBox Text="{Binding CurrUserName}"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True" Margin="5,5,5,0">
+                <Label Content="密码：" MinWidth="100"/>
+                <TextBox Text="{Binding CurrPassword}"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True" Margin="5,5,5,0">
+                <Label Content="卡号：" MinWidth="100"/>
+                <Label Content="{Binding CurrCardID}" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
+            </DockPanel>
+            <Button Content="添加" FontSize="18" Height="Auto" Margin="5,5,5,0" HorizontalAlignment="Stretch"
+                    cal:Message.Attach="[Event Click] = [Action AddUser]"/>
+            <Button Content="修改" FontSize="18" Height="Auto" Margin="5,5,5,0" HorizontalAlignment="Stretch"
+                    cal:Message.Attach="[Event Click] = [Action ModifyUser]"/>
+            <Button Content="删除" FontSize="18" Height="Auto" Margin="5,5,5,0" HorizontalAlignment="Stretch"
+                    cal:Message.Attach="[Event Click] = [Action DeleteUser]"/>
+            <Button Content="重置全部" FontSize="18" Height="Auto" Margin="5,5,5,0" HorizontalAlignment="Stretch"
+                    cal:Message.Attach="[Event Click] = [Action ResetAll]"/>
+            <Button Content="关闭" FontSize="18" Height="Auto" Margin="5,5,5,0" HorizontalAlignment="Stretch"
+                    cal:Message.Attach="[Event Click] = [Action CloseWindow]"/>
+        </StackPanel>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="QA.SpotCheckPages.Views.SpotCheckMotionCtrlPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:local="clr-namespace:QA.SpotCheckPages.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinQuick.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <CheckBox Content="上相机扫码光源" Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[0]}"
+                      cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(0)]"/>
+            <CheckBox Content="上相机拍照光源" Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[1]}"
+                      cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(1)]"/>
+            <CheckBox Content="下相机光源" Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[2]}"
+                      cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(2)]"/>
+            <CheckBox Content="扩展输出4" Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[3]}"
+                      cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(3)]"/>
+            <CheckBox Content="  主输出1 " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsMainOut[0]}"
+                      cal:Message.Attach="[Event Click] = [Action IsCheckBoxMainOut(0)]"/>
+            <CheckBox Content="  主输出2 " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsMainOut[1]}"
+                      cal:Message.Attach="[Event Click] = [Action IsCheckBoxMainOut(1)]"/>
+            <CheckBox Content="  主输出3 " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsMainOut[2]}"
+                      cal:Message.Attach="[Event Click] = [Action IsCheckBoxMainOut(2)]"/>
+            <CheckBox Content="  主输出4 " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsMainOut[3]}"
+                      cal:Message.Attach="[Event Click] = [Action IsCheckBoxMainOut(3)]"/>
+        </StackPanel>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <StackPanel>
+                <CheckBox Content="    1#吸    " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[4]}"
+                      cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(4)]"/>
+                <CheckBox Content="    1#破    " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[5]}"
+                      cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(5)]"/>
+                <CheckBox Content="  1#气缸 " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[12]}"
+                          cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(12)]"/>
+                <CheckBox Content="    2#吸    " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[6]}"
+                      cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(6)]"/>
+                <CheckBox Content="    2#破    " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[7]}"
+                      cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(7)]"/>
+                <CheckBox Content="  2#气缸 " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[13]}"
+                          cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(13)]"/>
+                <CheckBox Content="    3#吸    " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[8]}"
+                          cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(8)]"/>
+                <CheckBox Content="    3#破    " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[9]}"
+                          cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(9)]"/>
+                <CheckBox Content="  3#气缸 " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[14]}"
+                          cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(14)]"/>
+                <CheckBox Content="    4#吸    " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[10]}"
+                          cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(10)]"/>
+                <CheckBox Content="    4#破    " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[11]}"
+                          cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(11)]"/>
+                <CheckBox Content="  4#气缸 " Height="30" Margin="0,0,10,0" FontSize="18" IsChecked="{Binding IsExtOut[15]}"
+                          cal:Message.Attach="[Event Click] = [Action IsCheckBoxExtOut(15)]"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="2">
+            <StackPanel>
+                <CheckBox Content="1#气缸上到位" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[0]}"/>
+                <CheckBox Content="2#气缸上到位" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[1]}"/>
+                <CheckBox Content="3#气缸上到位" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[2]}"/>
+                <CheckBox Content="4#气缸上到位" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[3]}"/>
+                <CheckBox Content="1#吸OK" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[4]}"/>
+                <CheckBox Content="2#吸OK" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[5]}"/>
+                <CheckBox Content="3#吸OK" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[6]}"/>
+                <CheckBox Content="4#吸OK" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[7]}"/>
+                <CheckBox Content="主输入1" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsMainIn[0]}"/>
+                <CheckBox Content="主输入2" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsMainIn[1]}"/>
+                <CheckBox Content="主输入3" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsMainIn[2]}"/>
+                <CheckBox Content="主输入4" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsMainIn[3]}"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="3">
+            <StackPanel>
+                <CheckBox Content="扩展输入9  " Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[8]}"/>
+                <CheckBox Content="扩展输入10" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[9]}"/>
+                <CheckBox Content="扩展输入11" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[10]}"/>
+                <CheckBox Content="扩展输入12" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[11]}"/>
+                <CheckBox Content="扩展输入13" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[12]}"/>
+                <CheckBox Content="扩展输入14" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[13]}"/>
+                <CheckBox Content="扩展输入15" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False" IsChecked="{Binding IsExtIn[14]}"/>
+                <CheckBox Content="扩展输入16" Height="30" Margin="0,0,10,0" FontSize="18" IsEnabled="False"  IsChecked="{Binding IsExtIn[15]}"/>
+
+                <CheckBox Content="监控输入状态" Height="30" Margin="0,20,10,0" FontSize="18" IsChecked="{Binding IsMonitorInState}"
+                    cal:Message.Attach="[Event Click] = [Action IsCheckBoxMonitorInState()]"/>
+
+            </StackPanel>
+        </Grid>
+
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,324 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Sys="clr-namespace:System;assembly=mscorlib">
+
+    <Sys:String x:Key="系统设置">Cài đặt hệ thống</Sys:String>
+    <Sys:String x:Key="生产模式">Chế độ sản xuất</Sys:String>
+    <Sys:String x:Key="调试模式">Chế độ gỡ lỗi</Sys:String>
+    <Sys:String x:Key="计划停机模式">Chế độ dừng kế hoạch</Sys:String>
+
+    <Sys:String x:Key="模块启用">Kích hoạt mô-đun</Sys:String>
+    <Sys:String x:Key="启用ModbusTcp">Bật ModbusTcp</Sys:String>
+    <Sys:String x:Key="Modbus485通讯参数">Tham số truyền thông Modbus485</Sys:String>
+    <Sys:String x:Key="串口号">Số cổng COM</Sys:String>
+    <Sys:String x:Key="站号">Số trạm</Sys:String>
+    <Sys:String x:Key="ModbusTcp通讯">Truyền thông ModbusTcp</Sys:String>
+    <Sys:String x:Key="IP">IP</Sys:String>
+    <Sys:String x:Key="端口">Cổng</Sys:String>
+    <Sys:String x:Key="缓冲区大小">Kích thước bộ đệm</Sys:String>
+    <Sys:String x:Key="超时">Quá thời gian</Sys:String>
+    <Sys:String x:Key="读通讯地址">Đọc địa chỉ truyền thông</Sys:String>
+    <Sys:String x:Key="读PLC-起始地址">Đọc PLC - Địa chỉ bắt đầu</Sys:String>
+    <Sys:String x:Key="读PLC-地址个数">Đọc PLC - Số lượng địa chỉ</Sys:String>
+    <Sys:String x:Key="读PLC-机台状态地址">Đọc PLC - Địa chỉ trạng thái máy</Sys:String>
+    <Sys:String x:Key="读PLC-控制上位机状态地址">Đọc PLC - Địa chỉ trạng thái máy tính điều khiển</Sys:String>
+    <Sys:String x:Key="读PLC-安全门报警地址">Đọc PLC - Địa chỉ cảnh báo cửa an toàn</Sys:String>
+    <Sys:String x:Key="读PLC-报警地址">Đọc PLC - Địa chỉ cảnh báo</Sys:String>
+    <Sys:String x:Key="读PLC-触发二次拍照标记">Đọc PLC - Dấu hiệu kích hoạt chụp ảnh lần hai</Sys:String>
+    <Sys:String x:Key="读PLC-物料Ready触发加工标记">Đọc PLC - Dấu hiệu kích hoạt gia công khi vật liệu sẵn sàng</Sys:String>
+    <Sys:String x:Key="读PLC-触发扫码标记">Đọc PLC - Dấu hiệu kích hoạt quét mã vạch</Sys:String>
+    <Sys:String x:Key="读PLC-触发拍照标记">Đọc PLC - Dấu hiệu kích hoạt chụp ảnh</Sys:String>
+    <Sys:String x:Key="读PLC-触发测高标记">Đọc PLC - Dấu hiệu kích hoạt đo chiều cao</Sys:String>
+    <Sys:String x:Key="读PLC-当前处理穴位">Đọc PLC - Vị trí đang xử lý</Sys:String>
+    <Sys:String x:Key="读PLC-包边后复检启用标记">Đọc PLC - Dấu hiệu kích hoạt kiểm tra lại sau khi viền</Sys:String>
+    <Sys:String x:Key="读PLC-空跑模式标记">Đọc PLC - Dấu hiệu chế độ chạy không tải</Sys:String>
+    <Sys:String x:Key="读PLC-复拍标记">Đọc PLC - Dấu hiệu chụp lại</Sys:String>
+    <Sys:String x:Key="写通讯地址">Ghi địa chỉ truyền thông</Sys:String>
+    <Sys:String x:Key="写PLC-起始地址">Ghi PLC - Địa chỉ bắt đầu</Sys:String>
+    <Sys:String x:Key="写PLC-地址个数">Ghi PLC - Số lượng địa chỉ</Sys:String>
+    <Sys:String x:Key="写PLC-工位运行状态地址">Ghi PLC - Địa chỉ trạng thái hoạt động trạm</Sys:String>
+    <Sys:String x:Key="写PLC-报警地址">Ghi PLC - Địa chỉ cảnh báo</Sys:String>
+    <Sys:String x:Key="写PLC-是否需要处理">Ghi PLC - Có cần xử lý không</Sys:String>
+    <Sys:String x:Key="写PLC-工作结果">Ghi PLC - Kết quả công việc</Sys:String>
+    <Sys:String x:Key="写PLC-扫码结果">Ghi PLC - Kết quả quét mã</Sys:String>
+    <Sys:String x:Key="写PLC-视觉结果">Ghi PLC - Kết quả thị giác</Sys:String>
+    <Sys:String x:Key="写PLC-测高结果">Ghi PLC - Kết quả đo chiều cao</Sys:String>
+    <Sys:String x:Key="写PLC-是否需要保压">Ghi PLC - Có cần giữ áp không</Sys:String>
+    <Sys:String x:Key="写PLC-视觉比对结果">Ghi PLC - Kết quả so sánh thị giác</Sys:String>
+    <Sys:String x:Key="写PLC-测高比对结果">Ghi PLC - Kết quả so sánh đo chiều cao</Sys:String>
+    <Sys:String x:Key="写PLC-让PLC复位">Ghi PLC - Đặt lại PLC</Sys:String>
+    <Sys:String x:Key="写PLC-心跳信号">Ghi PLC - Tín hiệu nhịp tim</Sys:String>
+    <Sys:String x:Key="写PLC-载具盘物料信息">Ghi PLC - Thông tin vật liệu khay mang</Sys:String>
+    <Sys:String x:Key="连接参数">Tham số kết nối</Sys:String>
+    <Sys:String x:Key="写入超时">Quá thời gian ghi</Sys:String>
+    <Sys:String x:Key="读取超时">Quá thời gian đọc</Sys:String>
+    <Sys:String x:Key="扫码设定">Cài đặt quét mã</Sys:String>
+    <Sys:String x:Key="触发扫码指令">Lệnh kích hoạt quét mã</Sys:String>
+    <Sys:String x:Key="终止扫码指令">Lệnh kết thúc quét mã</Sys:String>
+    <Sys:String x:Key="启用结束标识符">Bật ký tự kết thúc</Sys:String>
+    <Sys:String x:Key="未扫到码返回值">Giá trị trả về khi không quét được mã</Sys:String>
+    <Sys:String x:Key="最小长度">Độ dài tối thiểu</Sys:String>
+    <Sys:String x:Key="最大长度">Độ dài tối đa</Sys:String>
+    <Sys:String x:Key="Tray">Khay</Sys:String>
+    <Sys:String x:Key="启用获取Tray信息">Bật lấy thông tin khay</Sys:String>
+    <Sys:String x:Key="TrayIP">IP khay</Sys:String>
+    <Sys:String x:Key="通讯参数">Tham số truyền thông</Sys:String>
+    <Sys:String x:Key="视觉软件参数配置">Cấu hình tham số phần mềm thị giác</Sys:String>
+    <Sys:String x:Key="德创视觉vps文件路径">Đường dẫn tệp VPS thị giác DeChuang</Sys:String>
+    <Sys:String x:Key="图片存储路径">Đường dẫn lưu trữ ảnh</Sys:String>
+    <Sys:String x:Key="FTP图片上传">Tải lên ảnh FTP</Sys:String>
+    <Sys:String x:Key="启用图片打包上传至服务器">Bật đóng gói và tải ảnh lên máy chủ</Sys:String>
+    <Sys:String x:Key="服务器IP">IP máy chủ</Sys:String>
+    <Sys:String x:Key="服务器端口">Cổng máy chủ</Sys:String>
+    <Sys:String x:Key="登录用户名">Tên đăng nhập</Sys:String>
+    <Sys:String x:Key="登陆密码">Mật khẩu đăng nhập</Sys:String>
+    <Sys:String x:Key="线别">Dây chuyền</Sys:String>
+    <Sys:String x:Key="工站">Trạm công việc</Sys:String>
+    <Sys:String x:Key="Hive参数">Tham số Hive</Sys:String>
+    <Sys:String x:Key="IP地址">Địa chỉ IP</Sys:String>
+    <Sys:String x:Key="端口号">Số cổng</Sys:String>
+    <Sys:String x:Key="语言">Ngôn ngữ</Sys:String>
+    <Sys:String x:Key="登录设定">Cài đặt đăng nhập</Sys:String>
+    <Sys:String x:Key="允许使用用户名密码登录">Cho phép đăng nhập bằng tên người dùng/mật khẩu</Sys:String>
+
+    <Sys:String x:Key="MES上传NG">Tải lên MES NG</Sys:String>
+    <Sys:String x:Key="Tape缺失">Băng bị thiếu</Sys:String>
+    <Sys:String x:Key="小离型纸缺失">Giấy tách nhỏ bị thiếu</Sys:String>
+    <Sys:String x:Key="大离型纸未撕">Giấy tách lớn chưa xé</Sys:String>
+    <Sys:String x:Key="贴装偏移">Lệch vị trí dán</Sys:String>
+
+    <Sys:String x:Key="产品总数">Tổng sản phẩm</Sys:String>
+    <Sys:String x:Key="良率">Tỷ lệ tốt vật liệu</Sys:String>
+    <Sys:String x:Key="扫码枪扫码总数">Tổng số lần quét máy quét mã</Sys:String>
+    <Sys:String x:Key="扫码枪良率">Tỷ lệ tốt máy quét mã</Sys:String>
+    <Sys:String x:Key="运行时间">Thời gian chạy</Sys:String>
+    <Sys:String x:Key="待料时间">Thời gian chờ vật liệu</Sys:String>
+    <Sys:String x:Key="故障时间">Thời gian sự cố</Sys:String>
+    <Sys:String x:Key="报警总数">Tổng số cảnh báo</Sys:String>
+
+    <Sys:String x:Key="加载视觉">Tải thị giác</Sys:String>
+    <Sys:String x:Key="关闭视觉">Tắt thị giác</Sys:String>
+
+    <Sys:String x:Key="开始时间">Thời gian bắt đầu：</Sys:String>
+    <Sys:String x:Key="结束时间">Thời gian kết thúc：</Sys:String>
+    <Sys:String x:Key="查询">Truy vấn</Sys:String>
+    <Sys:String x:Key="导出">Xuất</Sys:String>
+    <Sys:String x:Key="当前报警">Cảnh báo hiện tại</Sys:String>
+    <Sys:String x:Key="序号">STT</Sys:String>
+    <Sys:String x:Key="级别">Cấp độ</Sys:String>
+    <Sys:String x:Key="模块">Mô-đun</Sys:String>
+    <Sys:String x:Key="信息">Thông tin</Sys:String>
+    <Sys:String x:Key="历史报警">Lịch sử cảnh báo</Sys:String>
+    <Sys:String x:Key="时间">Thời gian</Sys:String>
+    <Sys:String x:Key="清空历史记录">Xóa lịch sử</Sys:String>
+
+    <Sys:String x:Key="静态测试">Kiểm tra tĩnh</Sys:String>
+    <Sys:String x:Key="动态测试">Kiểm tra động</Sys:String>
+    <Sys:String x:Key="停止测试">Dừng kiểm tra</Sys:String>
+    <Sys:String x:Key="查看数据">Xem dữ liệu</Sys:String>
+
+    <Sys:String x:Key="视觉界面">Giao diện thị giác</Sys:String>
+    <Sys:String x:Key="穴位信息">Thông tin vị trí</Sys:String>
+    <Sys:String x:Key="运行步骤">Bước hoạt động</Sys:String>
+    <Sys:String x:Key="统计信息">Thống kê</Sys:String>
+    <Sys:String x:Key="运行日志">Nhật ký hoạt động</Sys:String>
+    <Sys:String x:Key="报警信息">Thông tin cảnh báo</Sys:String>
+
+    <Sys:String x:Key="生产信息">Thông tin sản xuất</Sys:String>
+    <Sys:String x:Key="模块信息">Thông tin mô-đun</Sys:String>
+    <Sys:String x:Key="扫码枪">Máy quét mã</Sys:String>
+    <Sys:String x:Key="视觉">Thị giác</Sys:String>
+
+    <Sys:String x:Key="图表">Biểu đồ</Sys:String>
+    <Sys:String x:Key="一天产量">Sản lượng một ngày</Sys:String>
+    <Sys:String x:Key="选择日期">Chọn ngày</Sys:String>
+    <Sys:String x:Key="一段时间内产量">Sản lượng trong khoảng thời gian</Sys:String>
+    <Sys:String x:Key="起始日期">Ngày bắt đầu</Sys:String>
+    <Sys:String x:Key="结束日期">Ngày kết thúc</Sys:String>
+
+    <Sys:String x:Key="数据">Dữ liệu</Sys:String>
+    <Sys:String x:Key="当前产量">Sản lượng hiện tại</Sys:String>
+    <Sys:String x:Key="重置">Đặt lại</Sys:String>
+    <Sys:String x:Key="目标产量">Sản lượng mục tiêu</Sys:String>
+    <Sys:String x:Key="复检OK">Kiểm tra lại OK</Sys:String>
+    <Sys:String x:Key="复检NG">Kiểm tra lại NG</Sys:String>
+    <Sys:String x:Key="清零">Xóa về không</Sys:String>
+
+    <Sys:String x:Key="点检">Kiểm tra điểm</Sys:String>
+    <Sys:String x:Key="点检日志">Nhật ký kiểm tra điểm</Sys:String>
+    <Sys:String x:Key="点检项目">Hạng mục kiểm tra điểm</Sys:String>
+    <Sys:String x:Key="扫码点检">Kiểm tra điểm quét mã</Sys:String>
+    <Sys:String x:Key="PLC点检">Kiểm tra điểm PLC</Sys:String>
+    <Sys:String x:Key="相机点检">Kiểm tra điểm máy ảnh</Sys:String>
+    <Sys:String x:Key="图片上传">Tải lên ảnh</Sys:String>
+
+    <Sys:String x:Key="制程">Quy trình</Sys:String>
+    <Sys:String x:Key="新建制程">Tạo quy trình mới</Sys:String>
+    <Sys:String x:Key="复制制程">Sao chép quy trình</Sys:String>
+    <Sys:String x:Key="加载制程">Tải quy trình</Sys:String>
+    <Sys:String x:Key="删除制程">Xóa quy trình</Sys:String>
+    <Sys:String x:Key="保存制程">Lưu quy trình</Sys:String>
+    <Sys:String x:Key="制程名称">Tên quy trình</Sys:String>
+    <Sys:String x:Key="打开示教">Mở dạy học</Sys:String>
+    <Sys:String x:Key="拍照位置">Vị trí chụp ảnh</Sys:String>
+
+    <Sys:String x:Key="穴位号">Số vị trí</Sys:String>
+    <Sys:String x:Key="X贴合补偿">Bù dán X</Sys:String>
+    <Sys:String x:Key="Y贴合补偿">Bù dán Y</Sys:String>
+
+    <Sys:String x:Key="XY设置为当前坐标">Đặt XY thành tọa độ hiện tại</Sys:String>
+    <Sys:String x:Key="移动到点位坐标">Di chuyển đến tọa độ điểm</Sys:String>
+    <Sys:String x:Key="当前位置视觉定位Mark">Định vị Mark thị giác tại vị trí hiện tại</Sys:String>
+    <Sys:String x:Key="当前位置视觉获取二维码">Lấy mã QR thị giác tại vị trí hiện tại</Sys:String>
+
+    <Sys:String x:Key="添加">Thêm</Sys:String>
+    <Sys:String x:Key="删除">Xóa</Sys:String>
+    <Sys:String x:Key="上移">Di chuyển lên</Sys:String>
+    <Sys:String x:Key="下移">Di chuyển xuống</Sys:String>
+    <Sys:String x:Key="阵列">Mảng</Sys:String>
+    <Sys:String x:Key="导出日志">Xuất nhật ký</Sys:String>
+    <Sys:String x:Key="清空日志">Xóa nhật ký</Sys:String>
+
+    <Sys:String x:Key="备份">Sao lưu</Sys:String>
+    <Sys:String x:Key="确定">Xác nhận</Sys:String>
+    <Sys:String x:Key="取消">Hủy</Sys:String>
+
+    <Sys:String x:Key="LineName（线别）：">LineName（Dây chuyền）：</Sys:String>
+    <Sys:String x:Key="StationName（站别）：">StationName（Trạm）：</Sys:String>
+    <Sys:String x:Key="允许修改参数">Cho phép sửa tham số</Sys:String>
+    <Sys:String x:Key="保存参数">Lưu tham số</Sys:String>
+
+    <Sys:String x:Key="自动上传图片">Tự động tải lên ảnh</Sys:String>
+    <Sys:String x:Key="服务器状态">Trạng thái máy chủ</Sys:String>
+    <Sys:String x:Key="当前上传本地文件夹路径">Đường dẫn thư mục cục bộ đang tải lên</Sys:String>
+    <Sys:String x:Key="选择文件夹">Chọn thư mục</Sys:String>
+    <Sys:String x:Key="上传单个文件夹">Tải lên một thư mục</Sys:String>
+    <Sys:String x:Key="自动上传全部文件夹">Tự động tải lên tất cả thư mục</Sys:String>
+    <Sys:String x:Key="打开FTP文件夹">Mở thư mục FTP</Sys:String>
+    <Sys:String x:Key="压缩进度">Tiến trình nén</Sys:String>
+    <Sys:String x:Key="上传进度">Tiến trình tải lên</Sys:String>
+
+    <Sys:String x:Key="刷新读取地址">Làm mới địa chỉ đọc</Sys:String>
+    <Sys:String x:Key="刷新写入地址">Làm mới địa chỉ ghi</Sys:String>
+    <Sys:String x:Key="重新连接PLC">Kết nối lại PLC</Sys:String>
+    <Sys:String x:Key="读取地址">Đọc địa chỉ</Sys:String>
+    <Sys:String x:Key="写入地址">Ghi địa chỉ</Sys:String>
+    <Sys:String x:Key="写入PLC当前地址">Ghi địa chỉ hiện tại PLC</Sys:String>
+
+    <Sys:String x:Key="触发扫码">Kích hoạt quét mã</Sys:String>
+    <Sys:String x:Key="扫码">Quét mã</Sys:String>
+
+    <Sys:String x:Key="用户：">Người dùng：</Sys:String>
+    <Sys:String x:Key="密码：">Mật khẩu：</Sys:String>
+    <Sys:String x:Key="登录">Đăng nhập</Sys:String>
+
+    <Sys:String x:Key="相机设置">Cài đặt máy ảnh</Sys:String>
+    <Sys:String x:Key="Hive系统设置">Cài đặt hệ thống Hive</Sys:String>
+    <Sys:String x:Key="MES设置">Cài đặt MES</Sys:String>
+    <Sys:String x:Key="其他设置">Cài đặt khác</Sys:String>
+    <Sys:String x:Key="PLC设置">Cài đặt PLC</Sys:String>
+    <Sys:String x:Key="扫码枪设置">Cài đặt máy quét mã</Sys:String>
+
+    <Sys:String x:Key="软件版本号">Phiên bản phần mềm</Sys:String>
+    <Sys:String x:Key="HIVE界面">Giao diện HIVE</Sys:String>
+    <Sys:String x:Key="其他">Khác</Sys:String>
+    <Sys:String x:Key="Site">Site</Sys:String>
+    <Sys:String x:Key="Vendor">Nhà cung cấp</Sys:String>
+
+    <Sys:String x:Key="启用启动时上传Alarm信息">Bật tải thông tin cảnh báo khi khởi động</Sys:String>
+    <Sys:String x:Key="B2BTape相关">Liên quan B2BTape</Sys:String>
+    <Sys:String x:Key="B2BTapeSN位数">Số chữ SN B2BTape</Sys:String>
+    <Sys:String x:Key="所有B2BTapeIPN">Tất cả IPN B2BTape</Sys:String>
+    <Sys:String x:Key="所有调机B2BTapeSN">Tất cả SN B2BTape hiệu chỉnh</Sys:String>
+    <Sys:String x:Key="B2BTapeSN">SN B2BTape</Sys:String>
+    <Sys:String x:Key="B2BTapeVendor">Nhà cung cấp B2BTape</Sys:String>
+    <Sys:String x:Key="B2BTape单卷最大物料数">Số vật liệu tối đa mỗi cuộn B2BTape</Sys:String>
+    <Sys:String x:Key="B2BTape剩余预警物料数">Số vật liệu cảnh báo còn lại B2BTape</Sys:String>
+    <Sys:String x:Key="B2BTape物料名称">Tên vật liệu B2BTape</Sys:String>
+    <Sys:String x:Key="MES参数设定">Cài đặt tham số MES</Sys:String>
+    <Sys:String x:Key="本机是否绑定天线与SIP">Máy này có ràng buộc với ăng-ten và SIP không</Sys:String>
+    <Sys:String x:Key="MES上传类型">Loại tải lên MES</Sys:String>
+    <Sys:String x:Key="Line">Dây chuyền</Sys:String>
+    <Sys:String x:Key="Station">Trạm</Sys:String>
+    <Sys:String x:Key="App">Ứng dụng</Sys:String>
+    <Sys:String x:Key="Fixid">Fixid</Sys:String>
+
+    <Sys:String x:Key="连接">Kết nối</Sys:String>
+    <Sys:String x:Key="断开">Ngắt kết nối</Sys:String>
+    <Sys:String x:Key="启用">Bật</Sys:String>
+    <Sys:String x:Key="禁用">Tắt</Sys:String>
+
+    <Sys:String x:Key="手动设定软件版本号">Đặt thủ công phiên bản phần mềm</Sys:String>
+    <Sys:String x:Key="六层">Lớp sáu</Sys:String>
+    <Sys:String x:Key="五层">Lớp năm</Sys:String>
+    <Sys:String x:Key="四层">Lớp bốn</Sys:String>
+    <Sys:String x:Key="三层">Lớp ba</Sys:String>
+    <Sys:String x:Key="二层">Lớp hai</Sys:String>
+    <Sys:String x:Key="一层">Lớp một</Sys:String>
+    <Sys:String x:Key="复检NG仓状态">Trạng thái kho NG kiểm tra lại</Sys:String>
+
+    <Sys:String x:Key="读PLC-NG仓状态起始地址">Đọc PLC - Địa chỉ bắt đầu trạng thái kho NG</Sys:String>
+    <Sys:String x:Key="写PLC-保压结果是否写完">Ghi PLC - Kết quả giữ áp đã ghi xong chưa</Sys:String>
+    <Sys:String x:Key="通讯">Truyền thông</Sys:String>
+    <Sys:String x:Key="参数设置">Cài đặt tham số</Sys:String>
+
+    <Sys:String x:Key="AE_Vendor">AE_Vendor</Sys:String>
+    <Sys:String x:Key="machine_ID">machine_ID</Sys:String>
+    <Sys:String x:Key="Operator_ID">Operator_ID</Sys:String>
+    <Sys:String x:Key="Mode">Chế độ</Sys:String>
+    <Sys:String x:Key="TestSeriesID">TestSeriesID</Sys:String>
+    <Sys:String x:Key="Priority">Ưu tiên</Sys:String>
+    <Sys:String x:Key="online">trực tuyến</Sys:String>
+    <Sys:String x:Key="UserName">Tên người dùng</Sys:String>
+    <Sys:String x:Key="Password">Mật khẩu</Sys:String>
+    <Sys:String x:Key="本机IP">IP cục bộ</Sys:String>
+    <Sys:String x:Key="启用获取前站TP数据并上传">Bật lấy và tải lên dữ liệu TP trạm trước</Sys:String>
+    <Sys:String x:Key="前站TP机MES IP">IP MES máy TP trạm trước</Sys:String>
+    <Sys:String x:Key="NG产品允许上传">Cho phép tải lên sản phẩm NG</Sys:String>
+    <Sys:String x:Key="NG产品是否允许整板上传">Sản phẩm NG có cho phép tải lên cả bảng không</Sys:String>
+    <Sys:String x:Key="读PLC-带载具空跑模式标记">Đọc PLC - Dấu hiệu chế độ chạy không tải có khay</Sys:String>
+    <Sys:String x:Key="是否为大线">Có phải dây chuyền lớn không</Sys:String>
+    <Sys:String x:Key="贴合物料1名称">Tên vật liệu dán 1</Sys:String>
+
+    <Sys:String x:Key="写PLC-控制PLC按钮">Ghi PLC - Nút điều khiển PLC</Sys:String>
+    <Sys:String x:Key="是否为量产">Có phải sản xuất hàng loạt không</Sys:String>
+
+    <Sys:String x:Key="扫码与MES">Quét mã và MES</Sys:String>
+    <Sys:String x:Key="载具码：">Mã khay：</Sys:String>
+    <Sys:String x:Key="排线码：">Mã dây：</Sys:String>
+    <Sys:String x:Key="扫载具码">Quét mã khay</Sys:String>
+    <Sys:String x:Key="获取排线码">Lấy mã dây</Sys:String>
+    <Sys:String x:Key="获取SIP码">Lấy mã SIP</Sys:String>
+    <Sys:String x:Key="查询路由及穴位">Truy vấn đường dẫn và vị trí</Sys:String>
+    <Sys:String x:Key="绑定MES">Ràng buộc MES</Sys:String>
+    <Sys:String x:Key="一键查询绑定">Truy vấn và ràng buộc một phím</Sys:String>
+    <Sys:String x:Key="一键清除表格">Xóa bảng một phím</Sys:String>
+    <Sys:String x:Key="卷料SN：">SN cuộn：</Sys:String>
+    <Sys:String x:Key="查询次数">Số lần truy vấn</Sys:String>
+    <Sys:String x:Key="使用次数：">Số lần sử dụng：</Sys:String>
+
+    <Sys:String x:Key="Tape相关">Liên quan Tape</Sys:String>
+    <Sys:String x:Key="TapeSN位数">Số chữ SN Tape</Sys:String>
+    <Sys:String x:Key="所有TapeIPN">Tất cả IPN Tape</Sys:String>
+    <Sys:String x:Key="所有调机TapeSN">Tất cả SN Tape hiệu chỉnh</Sys:String>
+    <Sys:String x:Key="TapeSN">SN Tape</Sys:String>
+    <Sys:String x:Key="TapeVendor">Nhà cung cấp Tape</Sys:String>
+    <Sys:String x:Key="Tape单卷最大物料数">Số vật liệu tối đa mỗi cuộn Tape</Sys:String>
+    <Sys:String x:Key="Tape剩余预警物料数">Số vật liệu cảnh báo còn lại Tape</Sys:String>
+    <Sys:String x:Key="Tape物料名称">Tên vật liệu Tape</Sys:String>
+    <Sys:String x:Key="MesIP">MesIP</Sys:String>
+    <Sys:String x:Key="操作人员编号">Mã người vận hành</Sys:String>
+    <Sys:String x:Key="启用MES查询软件版本">Bật truy vấn phiên bản phần mềm MES</Sys:String>
+
+    <Sys:String x:Key="撕膜扫码触发">Kích hoạt quét mã xé màng</Sys:String>
+    <Sys:String x:Key="复检扫码触发">Kích hoạt quét mã kiểm tra lại</Sys:String>
+    <Sys:String x:Key="排线扫码触发">Kích hoạt quét mã dây</Sys:String>
+
+    <Sys:String x:Key="写入整形">Ghi số nguyên</Sys:String>
+    <Sys:String x:Key="读取整形">Đọc số nguyên</Sys:String>
+    
+    <Sys:String x:Key="写入字符串">Ghi chuỗi</Sys:String>
+    <Sys:String x:Key="读取字符串">Đọc chuỗi</Sys:String>
+    <Sys:String x:Key="发送测试">Gửi kiểm tra</Sys:String>
+</ResourceDictionary>

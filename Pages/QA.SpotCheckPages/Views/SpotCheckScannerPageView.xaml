@@ -1,0 +1,355 @@
+﻿<UserControl x:Class="QA.SpotCheckPages.Views.SpotCheckScannerPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QA.SpotCheckPages.Views"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:fa5="http://schemas.fontawesome.com/icons/"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinQuick.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="{DynamicResource 扫码与MES}" Margin="5" FontSize="18">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{DynamicResource 载具码：}" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" Text="{Binding CarrierSN, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Button Grid.Column="2" Name="GetSSSNs" Content="{DynamicResource 撕膜扫码触发}" Height="auto"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="16"/>
+                    <Button Grid.Column="3" Name="GetRecheckSNs" Content="{DynamicResource 复检扫码触发}"  Height="auto"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="16"/>
+                </Grid>
+                <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Battery Foam Tape：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" Text="{Binding Battery_Foam_Tape_SN, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </Grid>
+                <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Name="GetLineSNs" Content="{DynamicResource 获取排线码}" Height="auto"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18"/>
+                    <Button Grid.Column="1" Name="StopTest" Content="{DynamicResource 停止测试}" Height="auto"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18"/>
+                </Grid>
+                <Grid Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Text="" Foreground="Black" FontSize="18" Visibility="Hidden"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Button Grid.Column="0" Name="GetSipSNs" Content="{DynamicResource 获取SIP码}" Height="auto"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18"/>
+                    <Button Grid.Column="1" Name="GetRoutings" Content="{DynamicResource 查询路由及穴位}" Height="auto"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18"/>
+                    <Button Grid.Column="2" Name="ManualBindAll" Content="{DynamicResource 绑定MES}" Height="auto"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18"/>
+                </Grid>
+                <Grid Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Text="" Foreground="Black" FontSize="18" Visibility="Hidden"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Button Grid.Column="0" Name="OnceClickQueryBind" Content="{DynamicResource 一键查询绑定}" Height="auto"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18"/>
+                </Grid>
+                <Grid Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Text="" Foreground="Black" FontSize="18" Visibility="Hidden"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Button Grid.Column="0" Name="OnceCleanExcel" Content="{DynamicResource 一键清除表格}" Height="auto"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18"/>
+                </Grid>
+                <Grid Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="SIP1：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SipSNs[0], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Routing1：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding Routings[0], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="0" Grid.Column="4" Text="Result1：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="5" Text="{Binding Results[0], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="0" Grid.Column="6" Text="LineSN1：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="7" Text="{Binding LineSN[0], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="SIP2：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SipSNs[1], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="Routing2：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Routings[1], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="1" Grid.Column="4" Text="Result2：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="5" Text="{Binding Results[1], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="1" Grid.Column="6" Text="LineSN2：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="7" Text="{Binding LineSN[1], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="SIP3：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SipSNs[2], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="Routing3：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding Routings[2], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="2" Grid.Column="4" Text="Result3：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="5" Text="{Binding Results[2], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="2" Grid.Column="6" Text="LineSN3：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="7" Text="{Binding LineSN[2], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="SIP4：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SipSNs[3], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="Routing4：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Routings[3], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="3" Grid.Column="4" Text="Result4：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="3" Grid.Column="5" Text="{Binding Results[3], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="3" Grid.Column="6" Text="LineSN4：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="3" Grid.Column="7" Text="{Binding LineSN[3], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="SIP5：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SipSNs[4], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="4" Grid.Column="2" Text="Routing5：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="4" Grid.Column="3" Text="{Binding Routings[4], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="4" Grid.Column="4" Text="Result5：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="4" Grid.Column="5" Text="{Binding Results[4], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="4" Grid.Column="6" Text="LineSN5：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="4" Grid.Column="7" Text="{Binding LineSN[4], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="SIP6：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding SipSNs[5], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="5" Grid.Column="2" Text="Routing6：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding Routings[5], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="5" Grid.Column="4" Text="Result6：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="5" Grid.Column="5" Text="{Binding Results[5], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="5" Grid.Column="6" Text="LineSN6：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="5" Grid.Column="7" Text="{Binding LineSN[5], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="SIP7：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding SipSNs[6], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="6" Grid.Column="2" Text="Routing7：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="6" Grid.Column="3" Text="{Binding Routings[6], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="6" Grid.Column="4" Text="Result7：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="6" Grid.Column="5" Text="{Binding Results[6], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="6" Grid.Column="6" Text="LineSN7：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="6" Grid.Column="7" Text="{Binding LineSN[6], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="SIP8：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding SipSNs[7], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="7" Grid.Column="2" Text="Routing8：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding Routings[7], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="7" Grid.Column="4" Text="Result8：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="7" Grid.Column="5" Text="{Binding Results[7], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="7" Grid.Column="6" Text="LineSN8：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="7" Grid.Column="7" Text="{Binding LineSN[7], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="8" Grid.Column="0" Text="SIP9：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding SipSNs[8], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="8" Grid.Column="2" Text="Routing9：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="8" Grid.Column="3" Text="{Binding Routings[8], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="8" Grid.Column="4" Text="Result9：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="8" Grid.Column="5" Text="{Binding Results[8], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="8" Grid.Column="6" Text="LineSN9：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="8" Grid.Column="7" Text="{Binding LineSN[8], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="9" Grid.Column="0" Text="SIP10：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding SipSNs[9], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="9" Grid.Column="2" Text="Routing10：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="9" Grid.Column="3" Text="{Binding Routings[9], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="9" Grid.Column="4" Text="Result10：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="9" Grid.Column="5" Text="{Binding Results[9], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="9" Grid.Column="6" Text="LineSN10：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="9" Grid.Column="7" Text="{Binding LineSN[9], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="10" Grid.Column="0" Text="SIP11：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="10" Grid.Column="1" Text="{Binding SipSNs[10], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="10" Grid.Column="2" Text="Routing11：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="10" Grid.Column="3" Text="{Binding Routings[10], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="10" Grid.Column="4" Text="Result11：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="10" Grid.Column="5" Text="{Binding Results[10], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="10" Grid.Column="6" Text="LineSN11：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="10" Grid.Column="7" Text="{Binding LineSN[10], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="11" Grid.Column="0" Text="SIP12：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding SipSNs[11], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="11" Grid.Column="2" Text="Routing12：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="11" Grid.Column="3" Text="{Binding Routings[11], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="11" Grid.Column="4" Text="Result12：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="11" Grid.Column="5" Text="{Binding Results[11], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock Grid.Row="11" Grid.Column="6" Text="LineSN12：" Foreground="Black" FontSize="18"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="11" Grid.Column="7" Text="{Binding LineSN[11], UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="18"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </Grid>
+                <!--<Grid Grid.Row="10" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,5,0,0">
+                        <TextBox Text="" Foreground="Black" FontSize="18" Visibility="Hidden"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <Button Name="UploadTray" Content="{DynamicResource 批量绑定}" Height="auto"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18"/>
+                    </Grid>-->
+            </Grid>
+        </GroupBox>
+        <GroupBox  Grid.Row="1" Header="PDCA" Margin="5" FontSize="18">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Name="ReuploadPDCA" Content="PDCA补传" FontSize="18" Height="auto"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Center" IsEnabled="{Binding EnableReupload}"/>
+                <Button Grid.Row="1" Name="OpenPDCALogDir" Content="查看PDCA日志" FontSize="18" Height="auto" Margin="0,5,0,0"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <!--<Button Grid.Row="2" Name="HivecTest" Content="Hive machine data测试（正常+抛料）" FontSize="18" Height="auto" Margin="0,5,0,0"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,325 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Sys="clr-namespace:System;assembly=mscorlib">
+
+    <Sys:String x:Key="系统设置">系统设置</Sys:String>
+    <Sys:String x:Key="生产模式">生产模式</Sys:String>
+    <Sys:String x:Key="调试模式">调试模式</Sys:String>
+    <Sys:String x:Key="计划停机模式">计划停机模式</Sys:String>
+
+    <Sys:String x:Key="模块启用">模块启用</Sys:String>
+    <Sys:String x:Key="启用ModbusTcp">启用ModbusTcp</Sys:String>
+    <Sys:String x:Key="Modbus485通讯参数">Modbus485通讯参数</Sys:String>
+    <Sys:String x:Key="串口号">串口号</Sys:String>
+    <Sys:String x:Key="站号">站号</Sys:String>
+    <Sys:String x:Key="ModbusTcp通讯">ModbusTcp通讯</Sys:String>
+    <Sys:String x:Key="IP">IP</Sys:String>
+    <Sys:String x:Key="端口">端口</Sys:String>
+    <Sys:String x:Key="缓冲区大小">缓冲区大小</Sys:String>
+    <Sys:String x:Key="超时">超时</Sys:String>
+    <Sys:String x:Key="读通讯地址">读通讯地址</Sys:String>
+    <Sys:String x:Key="读PLC-起始地址">读PLC-起始地址</Sys:String>
+    <Sys:String x:Key="读PLC-地址个数">读PLC-地址个数</Sys:String>
+    <Sys:String x:Key="读PLC-机台状态地址">读PLC-机台状态地址</Sys:String>
+    <Sys:String x:Key="读PLC-控制上位机状态地址">读PLC-控制上位机状态地址</Sys:String>
+    <Sys:String x:Key="读PLC-安全门报警地址">读PLC-安全门报警地址</Sys:String>
+    <Sys:String x:Key="读PLC-报警地址">读PLC-报警地址</Sys:String>
+    <Sys:String x:Key="读PLC-触发二次拍照标记">读PLC-触发二次拍照标记</Sys:String>
+    <Sys:String x:Key="读PLC-物料Ready触发加工标记">读PLC-物料Ready触发加工标记</Sys:String>
+    <Sys:String x:Key="读PLC-触发扫码标记">读PLC-触发扫码标记</Sys:String>
+    <Sys:String x:Key="读PLC-触发拍照标记">读PLC-触发拍照标记</Sys:String>
+    <Sys:String x:Key="读PLC-触发测高标记">读PLC-触发测高标记</Sys:String>
+    <Sys:String x:Key="读PLC-当前处理穴位">读PLC-当前处理穴位</Sys:String>
+    <Sys:String x:Key="读PLC-包边后复检启用标记">读PLC-包边后复检启用标记</Sys:String>
+    <Sys:String x:Key="读PLC-空跑模式标记">读PLC-空跑模式标记</Sys:String>
+    <Sys:String x:Key="读PLC-复拍标记">读PLC-复拍标记</Sys:String>
+    <Sys:String x:Key="写通讯地址">写通讯地址</Sys:String>
+    <Sys:String x:Key="写PLC-起始地址">写PLC-起始地址</Sys:String>
+    <Sys:String x:Key="写PLC-地址个数">写PLC-地址个数</Sys:String>
+    <Sys:String x:Key="写PLC-工位运行状态地址">写PLC-工位运行状态地址</Sys:String>
+    <Sys:String x:Key="写PLC-报警地址">写PLC-报警地址</Sys:String>
+    <Sys:String x:Key="写PLC-是否需要处理">写PLC-是否需要处理</Sys:String>
+    <Sys:String x:Key="写PLC-工作结果">写PLC-工作结果</Sys:String>
+    <Sys:String x:Key="写PLC-扫码结果">写PLC-扫码结果</Sys:String>
+    <Sys:String x:Key="写PLC-视觉结果">写PLC-视觉结果</Sys:String>
+    <Sys:String x:Key="写PLC-测高结果">写PLC-测高结果</Sys:String>
+    <Sys:String x:Key="写PLC-是否需要保压">写PLC-是否需要保压</Sys:String>
+    <Sys:String x:Key="写PLC-视觉比对结果">写PLC-视觉比对结果</Sys:String>
+    <Sys:String x:Key="写PLC-测高比对结果">写PLC-测高比对结果</Sys:String>
+    <Sys:String x:Key="写PLC-让PLC复位">写PLC-让PLC复位</Sys:String>
+    <Sys:String x:Key="写PLC-心跳信号">写PLC-心跳信号</Sys:String>
+    <Sys:String x:Key="写PLC-载具盘物料信息">写PLC-载具盘物料信息</Sys:String>
+    <Sys:String x:Key="连接参数">连接参数</Sys:String>
+    <Sys:String x:Key="写入超时">写入超时</Sys:String>
+    <Sys:String x:Key="读取超时">读取超时</Sys:String>
+    <Sys:String x:Key="扫码设定">扫码设定</Sys:String>
+    <Sys:String x:Key="触发扫码指令">触发扫码指令</Sys:String>
+    <Sys:String x:Key="终止扫码指令">终止扫码指令</Sys:String>
+    <Sys:String x:Key="启用结束标识符">启用结束标识符</Sys:String>
+    <Sys:String x:Key="未扫到码返回值">未扫到码返回值</Sys:String>
+    <Sys:String x:Key="最小长度">最小长度</Sys:String>
+    <Sys:String x:Key="最大长度">最大长度</Sys:String>
+    <Sys:String x:Key="Tray">Tray</Sys:String>
+    <Sys:String x:Key="启用获取Tray信息">启用获取Tray信息</Sys:String>
+    <Sys:String x:Key="TrayIP">TrayIP</Sys:String>
+    <Sys:String x:Key="通讯参数">通讯参数</Sys:String>
+    <Sys:String x:Key="视觉软件参数配置">视觉软件参数配置</Sys:String>
+    <Sys:String x:Key="德创视觉vps文件路径">德创视觉vps文件路径</Sys:String>
+    <Sys:String x:Key="图片存储路径">图片存储路径</Sys:String>
+    <Sys:String x:Key="FTP图片上传">FTP图片上传</Sys:String>
+    <Sys:String x:Key="启用图片打包上传至服务器">启用图片打包上传至服务器</Sys:String>
+    <Sys:String x:Key="服务器IP">服务器IP</Sys:String>
+    <Sys:String x:Key="服务器端口">服务器端口</Sys:String>
+    <Sys:String x:Key="登录用户名">登录用户名</Sys:String>
+    <Sys:String x:Key="登陆密码">登陆密码</Sys:String>
+    <Sys:String x:Key="线别">线别</Sys:String>
+    <Sys:String x:Key="工站">工站</Sys:String>
+    <Sys:String x:Key="Hive参数">Hive参数</Sys:String>
+    <Sys:String x:Key="IP地址">IP地址</Sys:String>
+    <Sys:String x:Key="端口号">端口号</Sys:String>
+    <Sys:String x:Key="语言">语言</Sys:String>
+    <Sys:String x:Key="登录设定">登录设定</Sys:String>
+    <Sys:String x:Key="允许使用用户名密码登录">允许使用用户名密码登录</Sys:String>
+
+    <Sys:String x:Key="MES上传NG">MES上传NG</Sys:String>
+    <Sys:String x:Key="Tape缺失">Tape缺失</Sys:String>
+    <Sys:String x:Key="小离型纸缺失">小离型纸缺失</Sys:String>
+    <Sys:String x:Key="大离型纸未撕">大离型纸未撕</Sys:String>
+    <Sys:String x:Key="贴装偏移">贴装偏移</Sys:String>
+
+    <Sys:String x:Key="产品总数">产品总数</Sys:String>
+    <Sys:String x:Key="良率">物料良率</Sys:String>
+    <Sys:String x:Key="扫码枪扫码总数">扫码枪扫码总数</Sys:String>
+    <Sys:String x:Key="扫码枪良率">扫码枪良率</Sys:String>
+    <Sys:String x:Key="运行时间">运行时间</Sys:String>
+    <Sys:String x:Key="待料时间">待料时间</Sys:String>
+    <Sys:String x:Key="故障时间">故障时间</Sys:String>
+    <Sys:String x:Key="报警总数">报警总数</Sys:String>
+
+    <Sys:String x:Key="加载视觉">加载视觉</Sys:String>
+    <Sys:String x:Key="关闭视觉">关闭视觉</Sys:String>
+
+    <Sys:String x:Key="开始时间">开始时间：</Sys:String>
+    <Sys:String x:Key="结束时间">结束时间：</Sys:String>
+    <Sys:String x:Key="查询">查询</Sys:String>
+    <Sys:String x:Key="导出">导出</Sys:String>
+    <Sys:String x:Key="当前报警">当前报警</Sys:String>
+    <Sys:String x:Key="序号">序号</Sys:String>
+    <Sys:String x:Key="级别">级别</Sys:String>
+    <Sys:String x:Key="模块">模块</Sys:String>
+    <Sys:String x:Key="信息">信息</Sys:String>
+    <Sys:String x:Key="历史报警">历史报警</Sys:String>
+    <Sys:String x:Key="时间">时间</Sys:String>
+    <Sys:String x:Key="清空历史记录">清空历史记录</Sys:String>
+
+    <Sys:String x:Key="静态测试">静态测试</Sys:String>
+    <Sys:String x:Key="动态测试">动态测试</Sys:String>
+    <Sys:String x:Key="停止测试">停止测试</Sys:String>
+    <Sys:String x:Key="查看数据">查看数据</Sys:String>
+
+    <Sys:String x:Key="视觉界面">视觉界面</Sys:String>
+    <Sys:String x:Key="穴位信息">穴位信息</Sys:String>
+    <Sys:String x:Key="运行步骤">运行步骤</Sys:String>
+    <Sys:String x:Key="统计信息">统计信息</Sys:String>
+    <Sys:String x:Key="运行日志">运行日志</Sys:String>
+    <Sys:String x:Key="报警信息">报警信息</Sys:String>
+
+    <Sys:String x:Key="生产信息">生产信息</Sys:String>
+    <Sys:String x:Key="模块信息">模块信息</Sys:String>
+    <Sys:String x:Key="扫码枪">扫码枪</Sys:String>
+    <Sys:String x:Key="视觉">视觉</Sys:String>
+
+    <Sys:String x:Key="图表">图表</Sys:String>
+    <Sys:String x:Key="一天产量">一天产量</Sys:String>
+    <Sys:String x:Key="选择日期">选择日期</Sys:String>
+    <Sys:String x:Key="一段时间内产量">一段时间内产量</Sys:String>
+    <Sys:String x:Key="起始日期">起始日期</Sys:String>
+    <Sys:String x:Key="结束日期">结束日期</Sys:String>
+
+    <Sys:String x:Key="数据">数据</Sys:String>
+    <Sys:String x:Key="当前产量">当前产量</Sys:String>
+    <Sys:String x:Key="重置">重置</Sys:String>
+    <Sys:String x:Key="目标产量">目标产量</Sys:String>
+    <Sys:String x:Key="复检OK">复检OK</Sys:String>
+    <Sys:String x:Key="复检NG">复检NG</Sys:String>
+    <Sys:String x:Key="清零">清零</Sys:String>
+
+    <Sys:String x:Key="点检">点检</Sys:String>
+    <Sys:String x:Key="点检日志">点检日志</Sys:String>
+    <Sys:String x:Key="点检项目">点检项目</Sys:String>
+    <Sys:String x:Key="扫码点检">扫码点检</Sys:String>
+    <Sys:String x:Key="PLC点检">PLC点检</Sys:String>
+    <Sys:String x:Key="相机点检">相机点检</Sys:String>
+    <Sys:String x:Key="图片上传">图片上传</Sys:String>
+
+    <Sys:String x:Key="制程">制程</Sys:String>
+    <Sys:String x:Key="新建制程">新建制程</Sys:String>
+    <Sys:String x:Key="复制制程">复制制程</Sys:String>
+    <Sys:String x:Key="加载制程">加载制程</Sys:String>
+    <Sys:String x:Key="删除制程">删除制程</Sys:String>
+    <Sys:String x:Key="保存制程">保存制程</Sys:String>
+    <Sys:String x:Key="制程名称">制程名称</Sys:String>
+    <Sys:String x:Key="打开示教">打开示教</Sys:String>
+    <Sys:String x:Key="拍照位置">拍照位置</Sys:String>
+
+    <Sys:String x:Key="穴位号">穴位号</Sys:String>
+    <Sys:String x:Key="X贴合补偿">X贴合补偿</Sys:String>
+    <Sys:String x:Key="Y贴合补偿">Y贴合补偿</Sys:String>
+
+    <Sys:String x:Key="XY设置为当前坐标">XY设置为当前坐标</Sys:String>
+    <Sys:String x:Key="移动到点位坐标">移动到点位坐标</Sys:String>
+    <Sys:String x:Key="当前位置视觉定位Mark">当前位置视觉定位Mark</Sys:String>
+    <Sys:String x:Key="当前位置视觉获取二维码">当前位置视觉获取二维码</Sys:String>
+
+    <Sys:String x:Key="添加">添加</Sys:String>
+    <Sys:String x:Key="删除">删除</Sys:String>
+    <Sys:String x:Key="上移">上移</Sys:String>
+    <Sys:String x:Key="下移">下移</Sys:String>
+    <Sys:String x:Key="阵列">阵列</Sys:String>
+    <Sys:String x:Key="导出日志">导出日志</Sys:String>
+    <Sys:String x:Key="清空日志">清空日志</Sys:String>
+
+    <Sys:String x:Key="备份">备份</Sys:String>
+    <Sys:String x:Key="确定">确定</Sys:String>
+    <Sys:String x:Key="取消">取消</Sys:String>
+
+    <Sys:String x:Key="LineName（线别）：">LineName（线别）：</Sys:String>
+    <Sys:String x:Key="StationName（站别）：">StationName（站别）：</Sys:String>
+    <Sys:String x:Key="允许修改参数">允许修改参数</Sys:String>
+    <Sys:String x:Key="保存参数">保存参数</Sys:String>
+
+    <Sys:String x:Key="自动上传图片">自动上传图片</Sys:String>
+    <Sys:String x:Key="服务器状态">服务器状态</Sys:String>
+    <Sys:String x:Key="当前上传本地文件夹路径">当前上传本地文件夹路径</Sys:String>
+    <Sys:String x:Key="选择文件夹">选择文件夹</Sys:String>
+    <Sys:String x:Key="上传单个文件夹">上传单个文件夹</Sys:String>
+    <Sys:String x:Key="自动上传全部文件夹">自动上传全部文件夹</Sys:String>
+    <Sys:String x:Key="打开FTP文件夹">打开FTP文件夹</Sys:String>
+    <Sys:String x:Key="压缩进度">压缩进度</Sys:String>
+    <Sys:String x:Key="上传进度">上传进度</Sys:String>
+
+    <Sys:String x:Key="刷新读取地址">刷新读取地址</Sys:String>
+    <Sys:String x:Key="刷新写入地址">刷新写入地址</Sys:String>
+    <Sys:String x:Key="重新连接PLC">重新连接PLC</Sys:String>
+    <Sys:String x:Key="读取地址">读取地址</Sys:String>
+    <Sys:String x:Key="写入地址">写入地址</Sys:String>
+    <Sys:String x:Key="写入PLC当前地址">写入PLC当前地址</Sys:String>
+
+    <Sys:String x:Key="触发扫码">触发扫码</Sys:String>
+    <Sys:String x:Key="扫码">扫码</Sys:String>
+
+    <Sys:String x:Key="用户：">用户：</Sys:String>
+    <Sys:String x:Key="密码：">密码：</Sys:String>
+    <Sys:String x:Key="登录">登录</Sys:String>
+
+    <Sys:String x:Key="相机设置">相机设置</Sys:String>
+    <Sys:String x:Key="Hive系统设置">Hive系统设置</Sys:String>
+    <Sys:String x:Key="MES设置">MES设置</Sys:String>
+    <Sys:String x:Key="其他设置">其他设置</Sys:String>
+    <Sys:String x:Key="PLC设置">PLC设置</Sys:String>
+    <Sys:String x:Key="扫码枪设置">扫码枪设置</Sys:String>
+
+    <Sys:String x:Key="软件版本号">软件版本号</Sys:String>
+    <Sys:String x:Key="HIVE界面">HIVE界面</Sys:String>
+    <Sys:String x:Key="其他">其他</Sys:String>
+    <Sys:String x:Key="Site">Site</Sys:String>
+    <Sys:String x:Key="Vendor">Vendor</Sys:String>
+
+    <Sys:String x:Key="启用启动时上传Alarm信息">启用启动时上传Alarm信息</Sys:String>
+    <Sys:String x:Key="B2BTape相关">B2BTape相关</Sys:String>
+    <Sys:String x:Key="B2BTapeSN位数">B2BTapeSN位数</Sys:String>
+    <Sys:String x:Key="所有B2BTapeIPN">所有B2BTapeIPN</Sys:String>
+    <Sys:String x:Key="所有调机B2BTapeSN">所有调机B2BTapeSN</Sys:String>
+    <Sys:String x:Key="B2BTapeSN">B2BTapeSN</Sys:String>
+    <Sys:String x:Key="B2BTapeVendor">B2BTapeVendor</Sys:String>
+    <Sys:String x:Key="B2BTape单卷最大物料数">B2BTape单卷最大物料数</Sys:String>
+    <Sys:String x:Key="B2BTape剩余预警物料数">B2BTape剩余预警物料数</Sys:String>
+    <Sys:String x:Key="B2BTape物料名称">B2BTape物料名称</Sys:String>
+    <Sys:String x:Key="MES参数设定">MES参数设定</Sys:String>
+    <Sys:String x:Key="本机是否绑定天线与SIP">本机是否绑定天线与SIP</Sys:String>
+    <Sys:String x:Key="MES上传类型">MES上传类型</Sys:String>
+    <Sys:String x:Key="Line">Line</Sys:String>
+    <Sys:String x:Key="Station">Station</Sys:String>
+    <Sys:String x:Key="App">App</Sys:String>
+    <Sys:String x:Key="Fixid">Fixid</Sys:String>
+
+    <Sys:String x:Key="连接">连接</Sys:String>
+    <Sys:String x:Key="断开">断开</Sys:String>
+    <Sys:String x:Key="启用">启用</Sys:String>
+    <Sys:String x:Key="禁用">禁用</Sys:String>
+
+    <Sys:String x:Key="手动设定软件版本号">手动设定软件版本号</Sys:String>
+    <Sys:String x:Key="六层">六层</Sys:String>
+    <Sys:String x:Key="五层">五层</Sys:String>
+    <Sys:String x:Key="四层">四层</Sys:String>
+    <Sys:String x:Key="三层">三层</Sys:String>
+    <Sys:String x:Key="二层">二层</Sys:String>
+    <Sys:String x:Key="一层">一层</Sys:String>
+    <Sys:String x:Key="复检NG仓状态">复检NG仓状态</Sys:String>
+
+    <Sys:String x:Key="读PLC-NG仓状态起始地址">读PLC-NG仓状态起始地址</Sys:String>
+    <Sys:String x:Key="写PLC-保压结果是否写完">写PLC-保压结果是否写完</Sys:String>
+    <Sys:String x:Key="通讯">通讯</Sys:String>
+    <Sys:String x:Key="参数设置">参数设置</Sys:String>
+
+    <Sys:String x:Key="AE_Vendor">AE_Vendor</Sys:String>
+    <Sys:String x:Key="machine_ID">machine_ID</Sys:String>
+    <Sys:String x:Key="Operator_ID">Operator_ID</Sys:String>
+    <Sys:String x:Key="Mode">Mode</Sys:String>
+    <Sys:String x:Key="TestSeriesID">TestSeriesID</Sys:String>
+    <Sys:String x:Key="Priority">Priority</Sys:String>
+    <Sys:String x:Key="online">online</Sys:String>
+    <Sys:String x:Key="UserName">UserName</Sys:String>
+    <Sys:String x:Key="Password">Password</Sys:String>
+    <Sys:String x:Key="本机IP">本机IP</Sys:String>
+    <Sys:String x:Key="启用获取前站TP数据并上传">启用获取前站TP数据并上传</Sys:String>
+    <Sys:String x:Key="前站TP机MES IP">前站TP机MES IP</Sys:String>
+    <Sys:String x:Key="NG产品允许上传">NG产品允许上传</Sys:String>
+    <Sys:String x:Key="NG产品是否允许整板上传">NG产品是否允许整板上传</Sys:String>
+    <Sys:String x:Key="读PLC-带载具空跑模式标记">读PLC-带载具空跑模式标记</Sys:String>
+    <Sys:String x:Key="是否为大线">是否为大线</Sys:String>
+    <Sys:String x:Key="贴合物料1名称">贴合物料1名称</Sys:String>
+
+    <Sys:String x:Key="写PLC-控制PLC按钮">写PLC-控制PLC按钮</Sys:String>
+    <Sys:String x:Key="是否为量产">是否为量产</Sys:String>
+
+    <Sys:String x:Key="扫码与MES">扫码与MES</Sys:String>
+    <Sys:String x:Key="载具码：">载具码：</Sys:String>
+    <Sys:String x:Key="排线码：">排线码：</Sys:String>
+    <Sys:String x:Key="扫载具码">扫载具码</Sys:String>
+    <Sys:String x:Key="获取排线码">获取排线码</Sys:String>
+    <Sys:String x:Key="获取SIP码">获取SIP码</Sys:String>
+    <Sys:String x:Key="查询路由及穴位">查询路由及穴位</Sys:String>
+    <Sys:String x:Key="绑定MES">绑定MES</Sys:String>
+    <Sys:String x:Key="一键查询绑定">一键查询绑定</Sys:String>
+    <Sys:String x:Key="一键清除表格">一键清除表格</Sys:String>
+    <Sys:String x:Key="卷料SN：">卷料SN：</Sys:String>
+    <Sys:String x:Key="查询次数">查询次数</Sys:String>
+    <Sys:String x:Key="使用次数：">使用次数：</Sys:String>
+
+    <Sys:String x:Key="Tape相关">Tape相关</Sys:String>
+    <Sys:String x:Key="TapeSN位数">TapeSN位数</Sys:String>
+    <Sys:String x:Key="所有TapeIPN">所有TapeIPN</Sys:String>
+    <Sys:String x:Key="所有调机TapeSN">所有调机TapeSN</Sys:String>
+    <Sys:String x:Key="TapeSN">TapeSN</Sys:String>
+    <Sys:String x:Key="TapeVendor">TapeVendor</Sys:String>
+    <Sys:String x:Key="Tape单卷最大物料数">Tape单卷最大物料数</Sys:String>
+    <Sys:String x:Key="Tape剩余预警物料数">Tape剩余预警物料数</Sys:String>
+    <Sys:String x:Key="Tape物料名称">Tape物料名称</Sys:String>
+    <Sys:String x:Key="MesIP">MesIP</Sys:String>
+    <Sys:String x:Key="操作人员编号">操作人员编号</Sys:String>
+    <Sys:String x:Key="启用MES查询软件版本">启用MES查询软件版本</Sys:String>
+
+    <Sys:String x:Key="撕膜扫码触发">撕膜扫码触发</Sys:String>
+    <Sys:String x:Key="复检扫码触发">复检扫码触发</Sys:String>
+    <Sys:String x:Key="排线扫码触发">排线扫码触发</Sys:String>
+
+    <Sys:String x:Key="写入整形">写入整形</Sys:String>
+    <Sys:String x:Key="读取整形">读取整形</Sys:String>
+    
+    <Sys:String x:Key="写入字符串">写入字符串</Sys:String>
+    <Sys:String x:Key="读取字符串">读取字符串</Sys:String>
+    <Sys:String x:Key="发送测试">发送测试</Sys:String>
+    
+</ResourceDictionary>
